@@ -23,6 +23,10 @@ namespace Træpisseren
         private Texture2D mineSprite;
         private Rectangle mineRectangle;
 
+        public float deltaTime { get; private set; }
+
+        private List<GameObject> gameObjects; //Creates a new list of objects
+
         public Gameworld()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -41,6 +45,13 @@ namespace Træpisseren
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            gameObjects = new List<GameObject>();
+
+            GameObject go = new GameObject();
+            go.AddComponent(new SpriteRenderer(go, "base", 1));
+            go.transform.position = new Vector2(400, 200); //(x, y)
+            go.AddComponent(new Worker(go));
+            gameObjects.Add(go);
 
             base.Initialize();
         }
@@ -55,15 +66,10 @@ namespace Træpisseren
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            baseSprite = Content.Load<Texture2D>("base");
-            baseRectangle = new Rectangle(100, 0, baseSprite.Width, baseSprite.Height);
-            treeSprite = Content.Load<Texture2D>("tree");
-            treeRectangle = new Rectangle(300, 0, treeSprite.Width, baseSprite.Height);
-            mineSprite = Content.Load<Texture2D>("1mine");
-            mineRectangle = new Rectangle(500, 0, mineSprite.Width, baseSprite.Height);
-
-
-
+            foreach (GameObject go in gameObjects)
+            {
+                go.LoadContent(Content);
+            }
         }
 
         /// <summary>
@@ -86,6 +92,10 @@ namespace Træpisseren
                 Exit();
 
             // TODO: Add your update logic here
+            foreach (GameObject go in gameObjects) //Updates all GameObjects
+            {
+                go.Update();
+            }
 
             base.Update(gameTime);
         }
@@ -98,12 +108,10 @@ namespace Træpisseren
         {
             GraphicsDevice.Clear(Color.Green);
 
+            spriteBatch.Begin();
             // TODO: Add your drawing code here
             spriteBatch.Begin();
             spriteBatch.Draw(baseSprite, baseRectangle, Color.White);
-            spriteBatch.Draw(treeSprite, baseRectangle, Color.White);
-            //spriteBatch.Draw(mineSprite, baseRectangle, Color.White);
-
             spriteBatch.End();
 
             base.Draw(gameTime);

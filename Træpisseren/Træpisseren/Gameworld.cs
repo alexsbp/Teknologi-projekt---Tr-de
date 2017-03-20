@@ -16,6 +16,8 @@ namespace Træpisseren
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        private Texture2D baseSprite;
+        private Rectangle baseRectangle;
 
         public Gameworld()
         {
@@ -49,6 +51,8 @@ namespace Træpisseren
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            baseSprite = Content.Load<Texture2D>("base");
+            baseRectangle = new Rectangle(100, 0, baseSprite.Width, baseSprite.Height);
         }
 
         /// <summary>
@@ -84,6 +88,9 @@ namespace Træpisseren
             GraphicsDevice.Clear(Color.Green);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            spriteBatch.Draw(baseSprite, baseRectangle, Color.White);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }

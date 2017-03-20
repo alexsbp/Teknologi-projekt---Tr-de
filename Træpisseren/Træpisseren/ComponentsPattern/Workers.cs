@@ -9,8 +9,16 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Træpisseren
 {
-    class Workers
+    class Workers : Component, IUpdateable
     {
+        public Workers(GameObject gameObject) : base(gameObject)
+        {
+            gameObject.Tag = "Workers";
+        }
 
+        public void Update()
+        {
+
+        }
     }
 }

@@ -52,6 +52,7 @@ namespace Træpisseren
             go.transform.position = new Vector2(400, 200); //(x, y)
             go.AddComponent(new Worker(go));
             gameObjects.Add(go);
+            
 
             base.Initialize();
         }

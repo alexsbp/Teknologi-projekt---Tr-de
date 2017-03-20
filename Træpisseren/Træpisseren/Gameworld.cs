@@ -7,12 +7,12 @@ namespace Træpisseren
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Gmeworld : Game
+    public class Gameworld : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        public Gmeworld()
+        public Gameworld()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";

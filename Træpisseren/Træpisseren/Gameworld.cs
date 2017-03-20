@@ -20,6 +20,19 @@ namespace Træpisseren
         Resurser MINE;
         List<Resurser> ListWOOD; 
 
+        private static Gameworld instance;
+        public static Gameworld Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Gameworld();
+                }
+                return instance;
+            }
+        }
+
         public float deltaTime { get; private set; }
 
         public Gameworld()

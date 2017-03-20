@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Content;
 
 namespace Træpisseren
 {
@@ -28,7 +29,15 @@ namespace Træpisseren
             this.position = position; 
         }
 
+        public void LoadContent(ContentManager content)
+        {
+            sprite = content.Load<Texture2D>(spritestring);
+        }
 
+        public void Draw(SpriteBatch spritebatch)
+        {
+            spritebatch.Draw(sprite, position, Color.White);
+        }
 
     }
 }

@@ -14,7 +14,7 @@ namespace Træpisseren
         [STAThread]
         static void Main()
         {
-            using (var game = new Gmeworld())
+            using (var game = new Gameworld())
                 game.Run();
         }
     }

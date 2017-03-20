@@ -76,12 +76,6 @@ namespace Træpisseren
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
-            foreach (GameObject go in gameObjects)
-            {
-                go.LoadContent(Content);
-            }
-
             foreach (Resurser WOOD in ListWOOD)
             {
                 WOOD.LoadContent(Content); 
@@ -109,12 +103,6 @@ namespace Træpisseren
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
-            foreach (GameObject go in gameObjects) //Updates all GameObjects
-            {
-                go.Update();
-            }
-
             base.Update(gameTime);
         }
 
@@ -125,13 +113,6 @@ namespace Træpisseren
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Green);
-
-            spriteBatch.Begin();
-            foreach (GameObject go in gameObjects)
-            {
-                go.Draw(spriteBatch);
-            }
-            spriteBatch.End();
 
             spriteBatch.Begin();
             BASE.Draw(spriteBatch);

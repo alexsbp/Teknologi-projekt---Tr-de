@@ -18,6 +18,7 @@ namespace Træpisseren
         SpriteBatch spriteBatch;
         Resurser BASE;
         Resurser MINE;
+        Resurser BackG;
         List<Resurser> ListWOOD; 
 
         private static Gameworld instance;
@@ -39,8 +40,8 @@ namespace Træpisseren
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            graphics.PreferredBackBufferWidth = 1000;
-            graphics.PreferredBackBufferHeight = 650;
+            graphics.PreferredBackBufferWidth = 1001;
+            graphics.PreferredBackBufferHeight = 701;
             
         }
 
@@ -54,6 +55,7 @@ namespace Træpisseren
         {
             BASE = new Resurser(new Vector2(100, 200), "baseC", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
             MINE = new Resurser(new Vector2(700, 400), "mineC", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
+            BackG = new Resurser(new Vector2(100, 100), "BackG", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0);
 
             ListWOOD = new List<Resurser>(); 
             ListWOOD.Add (new Resurser(new Vector2(650, 50), "treeB", SpriteEffects.None, 0, Vector2.Zero, 0.3F, Color.White, 0));
@@ -117,6 +119,7 @@ namespace Træpisseren
             spriteBatch.Begin();
             BASE.Draw(spriteBatch);
             MINE.Draw(spriteBatch);
+            BackG.Draw(spriteBatch);
 
             foreach (Resurser Wood in ListWOOD)
             {

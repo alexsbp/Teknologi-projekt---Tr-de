@@ -47,6 +47,7 @@ namespace Træpisseren
             
             go.AddComponent(new Worker(go));
             gameObjects.Add(go);
+            
 
             base.Initialize();
         }

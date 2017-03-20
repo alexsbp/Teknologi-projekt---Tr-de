@@ -16,6 +16,9 @@ namespace Træpisseren
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Resurser BASE;
+        Resurser MINE;
+        Resurser WOOD;
 
         public float deltaTime { get; private set; }
 
@@ -38,16 +41,17 @@ namespace Træpisseren
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            BASE = new Resurser(new Vector2(100, 200), "baseA", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
+            MINE = new Resurser(new Vector2(700, 400), "mineA", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
+            WOOD = new Resurser(new Vector2(650, 50), "treeA", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
+
+
             gameObjects = new List<GameObject>();
-             
-            GameObject go = new GameObject();
-            go.AddComponent(new SpriteRenderer(go, "baseA", 1));
-            go.transform.position = new Vector2(400, 200);
-            
-            go.AddComponent(new Worker(go));
-            gameObjects.Add(go);
-            
+             /*GameObject go = new GameObject();
+             go.AddComponent(new SpriteRenderer(go, "baseA", 1));
+             go.transform.position = new Vector2(400, 200); //(x, y)
+             go.AddComponent(new Worker(go));
+             gameObjects.Add(go);*/
 
             base.Initialize();
         }
@@ -66,6 +70,10 @@ namespace Træpisseren
             {
                 go.LoadContent(Content);
             }
+
+            BASE.LoadContent(Content);
+            MINE.LoadContent(Content);
+            WOOD.LoadContent(Content); 
         }
 
         /// <summary>
@@ -105,12 +113,17 @@ namespace Træpisseren
             GraphicsDevice.Clear(Color.Green);
 
             spriteBatch.Begin();
-            // TODO: Add your drawing code here
             foreach (GameObject go in gameObjects)
             {
                 go.Draw(spriteBatch);
             }
             spriteBatch.End();
+
+            spriteBatch.Begin();
+            BASE.Draw(spriteBatch);
+            MINE.Draw(spriteBatch);
+            WOOD.Draw(spriteBatch); 
+            spriteBatch.End(); 
 
             base.Draw(gameTime);
         }

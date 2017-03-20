@@ -110,8 +110,10 @@ namespace Træpisseren
 
             spriteBatch.Begin();
             // TODO: Add your drawing code here
-            spriteBatch.Begin();
-            spriteBatch.Draw(baseSprite, baseRectangle, Color.White);
+            foreach (GameObject go in gameObjects)
+            {
+                go.Draw(spriteBatch);
+            }
             spriteBatch.End();
 
             base.Draw(gameTime);

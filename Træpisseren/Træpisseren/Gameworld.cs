@@ -18,6 +18,10 @@ namespace Træpisseren
         SpriteBatch spriteBatch;
         private Texture2D baseSprite;
         private Rectangle baseRectangle;
+        private Texture2D treeSprite;
+        private Rectangle treeRectangle;
+        private Texture2D mineSprite;
+        private Rectangle mineRectangle;
 
         public Gameworld()
         {
@@ -53,6 +57,13 @@ namespace Træpisseren
             // TODO: use this.Content to load your game content here
             baseSprite = Content.Load<Texture2D>("base");
             baseRectangle = new Rectangle(100, 0, baseSprite.Width, baseSprite.Height);
+            treeSprite = Content.Load<Texture2D>("tree");
+            treeRectangle = new Rectangle(300, 0, treeSprite.Width, baseSprite.Height);
+            mineSprite = Content.Load<Texture2D>("1mine");
+            mineRectangle = new Rectangle(500, 0, mineSprite.Width, baseSprite.Height);
+
+
+
         }
 
         /// <summary>
@@ -90,6 +101,9 @@ namespace Træpisseren
             // TODO: Add your drawing code here
             spriteBatch.Begin();
             spriteBatch.Draw(baseSprite, baseRectangle, Color.White);
+            spriteBatch.Draw(treeSprite, baseRectangle, Color.White);
+            //spriteBatch.Draw(mineSprite, baseRectangle, Color.White);
+
             spriteBatch.End();
 
             base.Draw(gameTime);

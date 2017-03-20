@@ -102,5 +102,20 @@ namespace Træpisseren
                 }
             }
         }
+
+        /// <summary>
+        /// Executed when an animation has finished playing
+        /// </summary>
+        /// <param name="animationName">The name of the animation</param>
+        public void OnAnimationDone(string animationName)
+        {
+            foreach (Component component in components)
+            {
+                if (component is IAnimateable) //Checks if any components are IAnimateable
+                {
+                    (component as IAnimateable).OnAnimationDone(animationName); //If a component is IAnimateable, call the local implementation of the method
+                }
+            }
+        }
     }
 }

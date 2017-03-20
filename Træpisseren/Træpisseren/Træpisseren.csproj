@@ -48,6 +48,7 @@
     <Compile Include="Gameworld.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resurser.cs" />
     <Compile Include="Workers.cs" />
   </ItemGroup>
   <ItemGroup>

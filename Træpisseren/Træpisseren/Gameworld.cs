@@ -16,8 +16,6 @@ namespace Træpisseren
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        private Texture2D baseSprite;
-        private Rectangle baseRectangle;
 
         public float deltaTime { get; private set; }
 
@@ -42,7 +40,7 @@ namespace Træpisseren
         {
             // TODO: Add your initialization logic here
             gameObjects = new List<GameObject>();
-
+             
             GameObject go = new GameObject();
             go.AddComponent(new SpriteRenderer(go, "base", 1));
             gameObjects.Add(go);

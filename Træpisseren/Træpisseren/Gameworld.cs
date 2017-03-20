@@ -42,7 +42,7 @@ namespace Træpisseren
         protected override void Initialize()
         {
             BASE = new Resurser(new Vector2(100, 200), "baseA", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
-            MINE = new Resurser(new Vector2(700, 400), "mineB", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
+            MINE = new Resurser(new Vector2(700, 400), "mineC", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
             WOOD = new Resurser(new Vector2(650, 50), "treeB", SpriteEffects.None, 0, Vector2.Zero, 0.3F, Color.White, 0);
 
 

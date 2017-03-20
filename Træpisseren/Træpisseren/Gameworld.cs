@@ -16,6 +16,9 @@ namespace Træpisseren
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Resurser BASE;
+        Resurser MINE;
+        Resurser WOOD;
 
         private static Gameworld instance;
         public static Gameworld Instance
@@ -53,21 +56,18 @@ namespace Træpisseren
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-            gameObjects = new List<GameObject>();
-             
-            GameObject go = new GameObject();
-            go.AddComponent(new SpriteRenderer(go, "baseA", 1));
-            go.transform.position = new Vector2(400, 200);            
-            go.AddComponent(new Worker(go));
-            gameObjects.Add(go);
+            BASE = new Resurser(new Vector2(100, 200), "baseA", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
+            MINE = new Resurser(new Vector2(700, 400), "mineB", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
+            WOOD = new Resurser(new Vector2(650, 50), "treeB", SpriteEffects.None, 0, Vector2.Zero, 0.3F, Color.White, 0);
 
-            grass = new GameObject();
-            grass.AddComponent(new SpriteRenderer(grass, "grassA", 1));
-            grass.transform.position = new Vector2(200, 200);
-            grass.AddComponent(new Worker(grass));
-            gameObjects.Add(grass);
-            
+
+            gameObjects = new List<GameObject>();
+             /*GameObject go = new GameObject();
+             go.AddComponent(new SpriteRenderer(go, "baseA", 1));
+             go.transform.position = new Vector2(400, 200); //(x, y)
+             go.AddComponent(new Worker(go));
+             gameObjects.Add(go);*/
+
             base.Initialize();
         }
 
@@ -85,6 +85,10 @@ namespace Træpisseren
             {
                 go.LoadContent(Content);
             }
+
+            BASE.LoadContent(Content);
+            MINE.LoadContent(Content);
+            WOOD.LoadContent(Content); 
         }
 
         /// <summary>
@@ -124,12 +128,17 @@ namespace Træpisseren
             GraphicsDevice.Clear(Color.Green);
 
             spriteBatch.Begin();
-            // TODO: Add your drawing code here
             foreach (GameObject go in gameObjects)
             {
                 go.Draw(spriteBatch);
             }
             spriteBatch.End();
+
+            spriteBatch.Begin();
+            BASE.Draw(spriteBatch);
+            MINE.Draw(spriteBatch);
+            WOOD.Draw(spriteBatch); 
+            spriteBatch.End(); 
 
             base.Draw(gameTime);
         }

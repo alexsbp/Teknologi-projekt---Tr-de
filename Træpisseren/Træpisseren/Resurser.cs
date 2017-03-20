@@ -22,11 +22,23 @@ namespace Træpisseren
         }
         private Texture2D sprite;
         private string spritestring;
+        private SpriteEffects effects;
+        private float layer;
+        private Vector2 origin = Vector2.Zero;
+        private float scale;
+        private Color color;
+        private float rotation; 
 
-        public Resurser(Vector2 position, string sprite)
+        public Resurser(Vector2 position, string sprite, SpriteEffects effect, float layer, Vector2 origin, float scale, Color color, float rotation)
         {
             this.spritestring = sprite;
-            this.position = position; 
+            this.position = position;
+            this.effects = effect;
+            this.layer = layer;
+            this.origin = origin;
+            this.scale = scale;
+            this.color = color;
+            this.rotation = rotation; 
         }
 
         public void LoadContent(ContentManager content)
@@ -36,7 +48,7 @@ namespace Træpisseren
 
         public void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(sprite, position, Color.White);
+            spritebatch.Draw(sprite, position, null, color, rotation, origin, scale, SpriteEffects.FlipHorizontally, layer);
         }
 
     }

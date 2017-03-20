@@ -17,9 +17,24 @@ namespace Træpisseren
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        private static Gameworld instance;
+        public static Gameworld Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Gameworld();
+                }
+                return instance;
+            }
+        }
+
         public float deltaTime { get; private set; }
 
         private List<GameObject> gameObjects; //Creates a new list of objects
+
+        public GameObject grass;
 
         public Gameworld()
         {
@@ -43,12 +58,16 @@ namespace Træpisseren
              
             GameObject go = new GameObject();
             go.AddComponent(new SpriteRenderer(go, "baseA", 1));
-            go.transform.position = new Vector2(400, 200);
-            
+            go.transform.position = new Vector2(400, 200);            
             go.AddComponent(new Worker(go));
             gameObjects.Add(go);
-            
 
+            grass = new GameObject();
+            grass.AddComponent(new SpriteRenderer(grass, "grassA", 1));
+            grass.transform.position = new Vector2(200, 200);
+            grass.AddComponent(new Worker(grass));
+            gameObjects.Add(grass);
+            
             base.Initialize();
         }
 

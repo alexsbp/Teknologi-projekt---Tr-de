@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Animation.cs" />
     <Compile Include="ComponentsPattern\Base.cs" />
     <Compile Include="ComponentsPattern\Components\Component.cs" />
     <Compile Include="ComponentsPattern\Components\SpriteRenderer.cs" />

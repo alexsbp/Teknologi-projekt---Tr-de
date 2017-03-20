@@ -16,6 +16,8 @@ namespace Træpisseren
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        private Texture2D baseSprite;
+        private Rectangle baseRectangle;
 
         public float deltaTime { get; private set; }
 

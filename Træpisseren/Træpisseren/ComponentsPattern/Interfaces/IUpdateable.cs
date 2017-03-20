@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Træpisseren
 {
-    class Workers
+    interface IUpdateable
     {
-
+        void Update();
     }
 }

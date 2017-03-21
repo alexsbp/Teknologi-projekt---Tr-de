@@ -17,16 +17,15 @@ namespace Træpisseren
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Resurser BASE;
         Resurser MINE;
         Resurser BackG;
         Resurser BANK;
         Resurser WORK;
-        private List<GameObject> gameObject;
+       
         List<Resurser> ListWOOD;
         List<Resurser> ListBASE;
         List<Resurser> ListTEST;
-
+        private List<GameObject> gameObject;
         private static Gameworld instance;
         public static Gameworld Instance
         {
@@ -58,18 +57,17 @@ namespace Træpisseren
         /// </summary>
         protected override void Initialize()
         {
-            gameObject = new List<GameObject>();
-            BASE = new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0);            
+            gameObject = new List<GameObject>();            
             MINE = new Resurser(new Vector2(700, 350), "mineC", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0);
-            //BASE = new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
-            BASE = new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.FlipVertically, 1, Vector2.Zero, 1F, Color.White, 0);
+
+            /*BASE = new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.FlipVertically, 1, Vector2.Zero, 1F, Color.White, 0);
             Thread t = new Thread(BASE.ThreadTest);
-            t.Start();
+            t.Start();*/
 
             MINE = new Resurser(new Vector2(700, 350), "mineC", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0);
             BackG = new Resurser(new Vector2(-100, 100), "BackG", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
             BANK = new Resurser(new Vector2(100, 350), "bankA", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
-            WORK = new Resurser(new Vector2(100, 100), "A", SpriteEffects.FlipVertically, 1, Vector2.Zero, 1F, Color.White, 0);
+            WORK = new Resurser(new Vector2(100, 100), "A1", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0);
 
             ListWOOD = new List<Resurser>();
             ListWOOD.Add (new Resurser(new Vector2(650, 50), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
@@ -136,9 +134,9 @@ namespace Træpisseren
             KeyboardState keyState = Keyboard.GetState();
             if (keyState.IsKeyDown(Keys.Space))
             {
-                foreach (var wood in ListWOOD)
+                foreach (var BASE2 in ListBASE)
                 {
-                    ListWOOD.Add(new Resurser(new Vector2(100, 100), "treeB", SpriteEffects.FlipVertically, 1, Vector2.Zero, 1F, Color.Blue, 0)); 
+                    ListWOOD.Add(new Resurser(new Vector2(200, 200), "mineC", SpriteEffects.FlipVertically, 0, Vector2.Zero, 1F, Color.Blue, 0));
                 }
             }
 
@@ -159,6 +157,7 @@ namespace Træpisseren
             {
                 BASE2.Draw(spriteBatch);
             }
+
             MINE.Draw(spriteBatch);
             BackG.Draw(spriteBatch);
             BANK.Draw(spriteBatch);

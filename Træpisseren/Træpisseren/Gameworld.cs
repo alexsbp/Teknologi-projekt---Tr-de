@@ -129,7 +129,7 @@ namespace Træpisseren
             {
                 foreach (var BASE2 in ListBASE)
                 {
-                    ListTEST.Add(new Resurser(new Vector2(200, 200), "mineC", SpriteEffects.FlipVertically, 1, Vector2.Zero, 1F, Color.Blue, 10));
+                    ListTEST.Add(new Resurser(new Vector2(200, 200), "mineC", SpriteEffects.FlipVertically, 0, Vector2.Zero, 1F, Color.Blue, 0));
                 }
             }
 

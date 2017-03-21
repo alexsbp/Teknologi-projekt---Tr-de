@@ -22,6 +22,9 @@ namespace Træpisseren
         Resurser BackG;
         Resurser BANK;
         List<Resurser> ListWOOD;
+        Resurser WORK;
+        private List<GameObject> gameObject;
+        List<Resurser> ListWOOD;
         List<Resurser> ListBASE;
         List<Resurser> ListTEST;
         private List<GameObject> gameObject;
@@ -45,9 +48,7 @@ namespace Træpisseren
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = 1000;
-            graphics.PreferredBackBufferHeight = 650;
-
-             
+            graphics.PreferredBackBufferHeight = 650;             
         }
 
         /// <summary>
@@ -58,9 +59,8 @@ namespace Træpisseren
         /// </summary>
         protected override void Initialize()
         {
-
-            BASE = new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0);
-            
+            gameObject = new List<GameObject>();
+            BASE = new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0);            
             MINE = new Resurser(new Vector2(700, 350), "mineC", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0);
             //BASE = new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
             BASE = new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.FlipVertically, 1, Vector2.Zero, 1F, Color.White, 0);
@@ -69,7 +69,8 @@ namespace Træpisseren
 
             MINE = new Resurser(new Vector2(700, 350), "mineC", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0);
             BackG = new Resurser(new Vector2(-100, 100), "BackG", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
-            BANK = new Resurser(new Vector2(100, 350), "bankA", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0);
+            BANK = new Resurser(new Vector2(100, 350), "bankA", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
+            WORK = new Resurser(new Vector2(100, 100), "A", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0);
 
             ListWOOD = new List<Resurser>();
             ListWOOD.Add (new Resurser(new Vector2(650, 50), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
@@ -97,8 +98,6 @@ namespace Træpisseren
                 go.LoadContent(Content);
             }
 
-            
-
             foreach (Resurser WOOD in ListWOOD)
             {
                 WOOD.LoadContent(Content); 
@@ -111,6 +110,7 @@ namespace Træpisseren
             MINE.LoadContent(Content);
             BackG.LoadContent(Content);
             BANK.LoadContent(Content);
+            WORK.LoadContent(Content);
         }
 
         /// <summary>
@@ -132,6 +132,7 @@ namespace Træpisseren
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             // TODO: Add your update logic here
+            WORK.Update();
 
             KeyboardState keyState = Keyboard.GetState();
             if (keyState.IsKeyDown(Keys.Space))
@@ -162,6 +163,7 @@ namespace Træpisseren
             MINE.Draw(spriteBatch);
             BackG.Draw(spriteBatch);
             BANK.Draw(spriteBatch);
+            WORK.Draw(spriteBatch);
 
             //Draws all GameObjects
             foreach (GameObject go in gameObject)
@@ -173,7 +175,6 @@ namespace Træpisseren
             {
                 Wood.Draw(spriteBatch); 
             }
-
 
             spriteBatch.End(); 
 

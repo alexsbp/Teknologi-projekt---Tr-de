@@ -97,7 +97,7 @@
 /processorParam:TextureFormat=Color
 /build:BackG.png
 
-#begin bankC.png
+#begin bankA.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -107,5 +107,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:bankC.png
+/build:bankA.png
 

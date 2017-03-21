@@ -19,6 +19,7 @@ namespace Træpisseren
         Resurser BASE;
         Resurser MINE;
         Resurser BackG;
+        Resurser BANK;
         List<Resurser> ListWOOD; 
 
         private static Gameworld instance;
@@ -56,6 +57,7 @@ namespace Træpisseren
             BASE = new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
             MINE = new Resurser(new Vector2(700, 350), "mineC", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
             BackG = new Resurser(new Vector2(-100, 100), "BackG", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
+            BANK = new Resurser(new Vector2(100, 350), "bankA", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
 
             ListWOOD = new List<Resurser>(); 
             ListWOOD.Add (new Resurser(new Vector2(650, 50), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
@@ -83,6 +85,7 @@ namespace Træpisseren
             BASE.LoadContent(Content);
             MINE.LoadContent(Content);
             BackG.LoadContent(Content);
+            BANK.LoadContent(Content);
         }
 
         /// <summary>
@@ -119,6 +122,7 @@ namespace Træpisseren
             BASE.Draw(spriteBatch);
             MINE.Draw(spriteBatch);
             BackG.Draw(spriteBatch);
+            BANK.Draw(spriteBatch);
 
             foreach (Resurser Wood in ListWOOD)
             {

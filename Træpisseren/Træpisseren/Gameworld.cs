@@ -55,8 +55,7 @@ namespace Træpisseren
         /// and initialize them as well.
         /// </summary>
         protected override void Initialize()
-        {
-            gameObject = new List<GameObject>();            
+        {           
             MINE = new Resurser(new Vector2(700, 350), "mineC", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0);
 
             /*BASE = new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.FlipVertically, 1, Vector2.Zero, 1F, Color.White, 0);
@@ -89,10 +88,6 @@ namespace Træpisseren
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            foreach (GameObject go in gameObject)
-            {
-                go.LoadContent(Content);
-            }
 
             foreach (Resurser WOOD in ListWOOD)
             {
@@ -165,12 +160,6 @@ namespace Træpisseren
             BackG.Draw(spriteBatch);
             BANK.Draw(spriteBatch);
             WORK.Draw(spriteBatch);
-
-            //Draws all GameObjects
-            foreach (GameObject go in gameObject)
-            {
-                go.Draw(spriteBatch);
-            }
 
             foreach (var tst in ListTEST)
             {

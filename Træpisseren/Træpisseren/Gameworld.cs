@@ -21,9 +21,9 @@ namespace Træpisseren
         Resurser MINE;
         Resurser BackG;
         Resurser BANK;
-        List<Resurser> ListWOOD;
         Resurser WORK;
         private List<GameObject> gameObject;
+        List<Resurser> ListWOOD;
         List<Resurser> ListWOOD;
         List<Resurser> ListBASE;
         List<Resurser> ListTEST;
@@ -139,7 +139,7 @@ namespace Træpisseren
             {
                 foreach (var wood in ListWOOD)
                 {
-                    ListTEST.Add(new Resurser(new Vector2(200, 200), "mineC", SpriteEffects.FlipVertically, 0, Vector2.Zero, 1F, Color.Blue, 0));
+                    ListWOOD.Add(new Resurser(new Vector2(100, 100), "treeB", SpriteEffects.FlipVertically, 1, Vector2.Zero, 1F, Color.Blue, 0)); 
                 }
             }
 

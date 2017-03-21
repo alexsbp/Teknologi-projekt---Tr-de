@@ -28,5 +28,10 @@ namespace Træpisseren
         {
             position += translation;
         }
+
+        internal void Translate(object p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

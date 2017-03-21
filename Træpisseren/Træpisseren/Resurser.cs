@@ -27,7 +27,7 @@ namespace Træpisseren
         private Vector2 origin = Vector2.Zero;
         private float scale;
         private Color color;
-        private float rotation; 
+        private float rotation;
 
         public Resurser(Vector2 position, string sprite, SpriteEffects effect, float layer, Vector2 origin, float scale, Color color, float rotation)
         {
@@ -38,7 +38,7 @@ namespace Træpisseren
             this.origin = origin;
             this.scale = scale;
             this.color = color;
-            this.rotation = rotation; 
+            this.rotation = rotation;
         }
 
         public void LoadContent(ContentManager content)
@@ -46,12 +46,15 @@ namespace Træpisseren
             sprite = content.Load<Texture2D>(spritestring);
         }
 
-        public void update ()
+        public void Update()
         {
-            position.X += 5; 
-            if (position.X >= 1000)
+            if (position.X <= 250 && position.Y == 100)
             {
-                position.X = 0; 
+                position.X += 5;
+            }
+            if (position.X >= 250 && position.Y >= 100)
+            {
+                position.Y += 5;
             }
         }
 
@@ -62,9 +65,7 @@ namespace Træpisseren
 
         public void ThreadTest()
         {
-            new Resurser(new Vector2(100,100), "baseC", SpriteEffects.FlipVertically, 1, Vector2.Zero, 1F, Color.White, 10);
-            update();   
+            new Resurser(position, spritestring, SpriteEffects.None, layer, origin, scale, Color.White, rotation);
         }
-
     }
 }

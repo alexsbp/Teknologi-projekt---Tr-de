@@ -23,6 +23,9 @@ namespace Træpisseren
         Resurser BANK;
         Resurser WORK;
         List<Resurser> ListWOOD;
+        private List<GameObject> gameObject;
+        List<Resurser> ListWOOD;
+        List<Resurser> ListBASE;
         List<Resurser> ListTEST;
 
         private static Gameworld instance;
@@ -64,7 +67,8 @@ namespace Træpisseren
             BASE = new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.FlipVertically, 1, Vector2.Zero, 1F, Color.White, 0);
             Thread t = new Thread(BASE.ThreadTest);
             t.Start();
-            MINE = new Resurser(new Vector2(700, 350), "mineC", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
+
+            MINE = new Resurser(new Vector2(700, 350), "mineC", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0);
             BackG = new Resurser(new Vector2(-100, 100), "BackG", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
             BANK = new Resurser(new Vector2(100, 350), "bankA", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
             WORK = new Resurser(new Vector2(100, 100), "A", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
@@ -76,7 +80,9 @@ namespace Træpisseren
             ListWOOD.Add (new Resurser(new Vector2(600, 20), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
             ListWOOD.Add (new Resurser(new Vector2(520, 60), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
 
-            ListTEST = new List<Resurser>(); 
+            ListTEST = new List<Resurser>();
+            ListBASE = new List<Resurser>();
+            ListBASE.Add(new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0));
             base.Initialize();
         }
 
@@ -88,12 +94,22 @@ namespace Træpisseren
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            foreach (GameObject go in gameObject)
+            {
+                go.LoadContent(Content);
+            }
+
+            
 
             foreach (Resurser WOOD in ListWOOD)
             {
                 WOOD.LoadContent(Content); 
             }
-            BASE.LoadContent(Content);
+
+            foreach (Resurser BASE2 in ListBASE)
+            {
+                BASE2.LoadContent(Content);
+            }
             MINE.LoadContent(Content);
             BackG.LoadContent(Content);
             BANK.LoadContent(Content);
@@ -118,6 +134,7 @@ namespace Træpisseren
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            // TODO: Add your update logic here
 
             KeyboardState keyState = Keyboard.GetState();
             if (keyState.IsKeyDown(Keys.Space))
@@ -141,21 +158,27 @@ namespace Træpisseren
             GraphicsDevice.Clear(Color.Green);
 
             spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
-            BASE.Draw(spriteBatch);
+            foreach (var BASE2 in ListBASE)
+            {
+                BASE2.Draw(spriteBatch);
+            }
             MINE.Draw(spriteBatch);
             BackG.Draw(spriteBatch);
             BANK.Draw(spriteBatch);
             WORK.Draw(spriteBatch);
+
+            //Draws all GameObjects
+            foreach (GameObject go in gameObject)
+            {
+                go.Draw(spriteBatch);
+            }
 
             foreach (Resurser Wood in ListWOOD)
             {
                 Wood.Draw(spriteBatch); 
             }
 
-            foreach (var tst in ListWOOD)
-            {
-                tst.Draw(spriteBatch); 
-            }
+
             spriteBatch.End(); 
 
             base.Draw(gameTime);

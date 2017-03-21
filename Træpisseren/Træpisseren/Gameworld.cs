@@ -21,6 +21,7 @@ namespace Træpisseren
         Resurser MINE;
         Resurser BackG;
         Resurser BANK;
+        Resurser WORK;
         List<Resurser> ListWOOD;
         List<Resurser> ListTEST;
 

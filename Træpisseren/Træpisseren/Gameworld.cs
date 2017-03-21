@@ -22,11 +22,9 @@ namespace Træpisseren
         Resurser BackG;
         Resurser BANK;
         List<Resurser> ListWOOD;
-        private List<GameObject> gameObject;
-        List<Resurser> ListWOOD;
         List<Resurser> ListBASE;
         List<Resurser> ListTEST;
-
+        private List<GameObject> gameObject;
         private static Gameworld instance;
         public static Gameworld Instance
         {

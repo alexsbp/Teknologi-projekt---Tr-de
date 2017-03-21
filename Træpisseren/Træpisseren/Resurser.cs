@@ -48,10 +48,10 @@ namespace Træpisseren
 
         public void update ()
         {
-            position.X += 10; 
+            position.X += 5; 
             if (position.X >= 1000)
             {
-                position.X = 100; 
+                position.X = 0; 
             }
         }
 
@@ -62,8 +62,8 @@ namespace Træpisseren
 
         public void ThreadTest()
         {
-            new Resurser(position,spritestring, SpriteEffects.None, layer, origin, scale, Color.White, rotation);
-            update();  
+            new Resurser(new Vector2(100,100), "baseC", SpriteEffects.FlipVertically, 1, Vector2.Zero, 1F, Color.White, 10);
+            update();   
         }
 
     }

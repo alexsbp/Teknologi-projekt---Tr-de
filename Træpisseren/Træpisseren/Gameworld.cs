@@ -23,6 +23,8 @@ namespace Træpisseren
         Resurser BANK;
         List<Resurser> ListWOOD;
         private List<GameObject> gameObject;
+        List<Resurser> ListWOOD;
+        List<Resurser> ListTEST;
 
         private static Gameworld instance;
         public static Gameworld Instance
@@ -58,22 +60,13 @@ namespace Træpisseren
         protected override void Initialize()
         {
 
-            gameObject = new List<GameObject>();
-            GameObject go = new GameObject();
-
-            go.AddComponent(new SpriteRenderer(go, "HeroSheet", 1));
-            go.transform.position = new Vector2(100, 100);
-            go.AddComponent(new Animator(go));
-            go.AddComponent(new Worker(go));
-            gameObject.Add(go);
-
             //BASE = new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
             BASE = new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.FlipVertically, 1, Vector2.Zero, 1F, Color.White, 0);
             Thread t = new Thread(BASE.ThreadTest);
             t.Start();
             MINE = new Resurser(new Vector2(700, 350), "mineC", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
             BackG = new Resurser(new Vector2(-100, 100), "BackG", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
-            BANK = new Resurser(new Vector2(100, 325), "bankA", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
+            BANK = new Resurser(new Vector2(100, 350), "bankA", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0);
 
             ListWOOD = new List<Resurser>();
             ListWOOD.Add (new Resurser(new Vector2(650, 50), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
@@ -82,6 +75,7 @@ namespace Træpisseren
             ListWOOD.Add (new Resurser(new Vector2(600, 20), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
             ListWOOD.Add (new Resurser(new Vector2(520, 60), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
 
+            ListTEST = new List<Resurser>(); 
             base.Initialize();
         }
 
@@ -130,12 +124,8 @@ namespace Træpisseren
 
             deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            //Updates all GameObjects
-            foreach (GameObject go in gameObject)
-            {
-                go.Update();
-            }
 
+             
             base.Update(gameTime);
         }
 
@@ -162,6 +152,11 @@ namespace Træpisseren
             foreach (Resurser Wood in ListWOOD)
             {
                 Wood.Draw(spriteBatch); 
+            }
+
+            foreach (var tst in ListWOOD)
+            {
+                tst.Draw(spriteBatch); 
             }
             spriteBatch.End(); 
 

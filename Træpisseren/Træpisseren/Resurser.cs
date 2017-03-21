@@ -58,6 +58,12 @@ namespace Træpisseren
             {
                 WalkBase();
             }
+            if (positionPoint == 2)
+            {
+                position.X = 136;
+                position.Y = 145;
+                positionPoint -= 2;
+            }
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -93,9 +99,22 @@ namespace Træpisseren
 
         private void WalkBase()
         {
-            if (position.X < 750 && position.Y < 710)
+            if (position.X < 750 && position.Y < 350)
             {
-                position.X -= 10;
+                position.X -= 5;
+            }
+            if (position.X < 340 && position.Y >= 146)
+            {
+                position.Y -= 5;
+                position.X += 5;
+            }
+            if (position.X >= 330 && position.Y < 146)
+            {
+                position.X -= 5;
+            }
+            if (position.X < 140)
+            {
+                positionPoint += 1;
             }
         }
     }

@@ -48,13 +48,9 @@ namespace Træpisseren
 
         public void Update()
         {
-            if (position.X <= 250 && position.Y == 100)
+            if (this.position.X >= 100 && this.position.Y >= 100)
             {
-                position.X += 5;
-            }
-            if (position.X >= 250 && position.Y >= 100)
-            {
-                position.Y += 5;
+                WalkMine();
             }
         }
 
@@ -66,6 +62,23 @@ namespace Træpisseren
         public void ThreadTest()
         {
             new Resurser(position, spritestring, SpriteEffects.None, layer, origin, scale, Color.White, rotation);
+        }
+
+        private void WalkMine()
+        {
+            if (position.X <= 400 && position.Y == 100)
+            {
+                position.X += 5;
+            }
+            if (position.X >= 400 && position.Y >= 100)
+            {
+                position.Y += 5;
+            }
+            if (position.X >= 400 && position.Y >= 350)
+            {
+                position.X += 5;
+                position.Y -= 5;
+            }
         }
     }
 }

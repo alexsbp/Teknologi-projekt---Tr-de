@@ -58,11 +58,11 @@ namespace Træpisseren
             BackG = new Resurser(new Vector2(-100, 100), "BackG", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
 
             ListWOOD = new List<Resurser>(); 
-            ListWOOD.Add (new Resurser(new Vector2(650, 50), "treeB", SpriteEffects.None, 0, Vector2.Zero, 0.3F, Color.White, 0));
-            ListWOOD.Add (new Resurser(new Vector2(600, 90), "treeB", SpriteEffects.None, 0, Vector2.Zero, 0.3F, Color.White, 0));
-            ListWOOD.Add (new Resurser(new Vector2(700, 45), "treeB", SpriteEffects.None, 0, Vector2.Zero, 0.3F, Color.White, 0));
-            ListWOOD.Add (new Resurser(new Vector2(600, 20), "treeB", SpriteEffects.None, 0, Vector2.Zero, 0.3F, Color.White, 0));
-            ListWOOD.Add (new Resurser(new Vector2(520, 60), "treeB", SpriteEffects.None, 0, Vector2.Zero, 0.3F, Color.White, 0));
+            ListWOOD.Add (new Resurser(new Vector2(650, 50), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
+            ListWOOD.Add (new Resurser(new Vector2(600, 90), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
+            ListWOOD.Add (new Resurser(new Vector2(700, 45), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
+            ListWOOD.Add (new Resurser(new Vector2(600, 20), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
+            ListWOOD.Add (new Resurser(new Vector2(520, 60), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
 
             base.Initialize();
         }
@@ -115,7 +115,7 @@ namespace Træpisseren
         {
             GraphicsDevice.Clear(Color.Green);
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
             BASE.Draw(spriteBatch);
             MINE.Draw(spriteBatch);
             BackG.Draw(spriteBatch);

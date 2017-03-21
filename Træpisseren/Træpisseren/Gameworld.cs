@@ -53,8 +53,8 @@ namespace Træpisseren
         /// </summary>
         protected override void Initialize()
         {
-            BASE = new Resurser(new Vector2(100, 200), "baseC", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
-            MINE = new Resurser(new Vector2(700, 400), "mineC", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
+            BASE = new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
+            MINE = new Resurser(new Vector2(650, 400), "mineC", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
             BackG = new Resurser(new Vector2(0, 0), "BackG", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
 
             ListWOOD = new List<Resurser>(); 

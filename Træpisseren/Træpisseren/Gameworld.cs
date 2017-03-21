@@ -23,10 +23,8 @@ namespace Træpisseren
         Resurser WORK;
         private List<GameObject> gameObject;
         List<Resurser> ListWOOD;
-        List<Resurser> ListWOOD;
         List<Resurser> ListBASE;
         List<Resurser> ListTEST;
-        private List<GameObject> gameObject;
         private static Gameworld instance;
         public static Gameworld Instance
         {
@@ -105,6 +103,10 @@ namespace Træpisseren
             {
                 BASE2.LoadContent(Content);
             }
+            foreach (var tst in ListTEST)
+            {
+                tst.LoadContent(Content); 
+            }
             MINE.LoadContent(Content);
             BackG.LoadContent(Content);
             BANK.LoadContent(Content);
@@ -137,11 +139,11 @@ namespace Træpisseren
             {
                 foreach (var BASE2 in ListBASE)
                 {
-                    ListWOOD.Add(new Resurser(new Vector2(200, 200), "mineC", SpriteEffects.FlipVertically, 0, Vector2.Zero, 1F, Color.Blue, 0));
+                    ListTEST.Add(new Resurser(new Vector2(200, 200), "mineC", SpriteEffects.FlipVertically, 0, Vector2.Zero, 1F, Color.Blue, 0));
                 }
             }
 
-             
+            
             base.Update(gameTime);
         }
 
@@ -170,6 +172,10 @@ namespace Træpisseren
                 go.Draw(spriteBatch);
             }
 
+            foreach (var tst in ListTEST)
+            {
+                tst.Draw(spriteBatch); 
+            }
             foreach (Resurser Wood in ListWOOD)
             {
                 Wood.Draw(spriteBatch); 

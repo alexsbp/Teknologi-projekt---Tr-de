@@ -12,6 +12,8 @@ namespace Træpisseren
 {
     class Resurser
     {
+        private int positionPoint = 0;        
+
         private Vector2 position;
         public Vector2 Position
         {
@@ -48,9 +50,13 @@ namespace Træpisseren
 
         public void Update()
         {
-            if (this.position.X >= 100 && this.position.Y >= 100)
+            if (positionPoint == 0)
             {
                 WalkMine();
+            }
+            if (positionPoint == 1)
+            {
+                WalkBase();
             }
         }
 
@@ -66,18 +72,30 @@ namespace Træpisseren
 
         private void WalkMine()
         {
-            if (position.X <= 400 && position.Y == 100)
+            if (position.X <= 300 && position.Y >= 100)
             {
                 position.X += 5;
             }
-            if (position.X >= 400 && position.Y >= 100)
+            if (position.X >= 300 && position.Y >= 100)
             {
                 position.Y += 5;
             }
-            if (position.X >= 400 && position.Y >= 350)
+            if (position.X >= 300 && position.Y >= 350)
             {
                 position.X += 5;
                 position.Y -= 5;
+            }
+            if (position.X > 710)
+            {
+                positionPoint += 1;
+            }
+        }
+
+        private void WalkBase()
+        {
+            if (position.X < 750 && position.Y < 710)
+            {
+                position.X -= 10;
             }
         }
     }

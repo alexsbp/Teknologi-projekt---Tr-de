@@ -21,7 +21,8 @@ namespace Træpisseren
         Resurser MINE;
         Resurser BackG;
         Resurser BANK;
-        List<Resurser> ListWOOD; 
+        List<Resurser> ListWOOD;
+        private List<GameObject> gameObject;
 
         private static Gameworld instance;
         public static Gameworld Instance
@@ -57,6 +58,15 @@ namespace Træpisseren
         protected override void Initialize()
         {
 
+            gameObject = new List<GameObject>();
+            GameObject go = new GameObject();
+
+            go.AddComponent(new SpriteRenderer(go, "HeroSheet", 1));
+            go.transform.position = new Vector2(100, 100);
+            go.AddComponent(new Animator(go));
+            go.AddComponent(new Worker(go));
+            gameObject.Add(go);
+
             //BASE = new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
             BASE = new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.FlipVertically, 1, Vector2.Zero, 1F, Color.White, 0);
             Thread t = new Thread(BASE.ThreadTest);
@@ -83,6 +93,10 @@ namespace Træpisseren
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            foreach (GameObject go in gameObject)
+            {
+                go.LoadContent(Content);
+            }
 
             foreach (Resurser WOOD in ListWOOD)
             {
@@ -112,7 +126,15 @@ namespace Træpisseren
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            // TODO: Add your update logic here
 
+            deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            //Updates all GameObjects
+            foreach (GameObject go in gameObject)
+            {
+                go.Update();
+            }
 
             base.Update(gameTime);
         }
@@ -130,6 +152,12 @@ namespace Træpisseren
             MINE.Draw(spriteBatch);
             BackG.Draw(spriteBatch);
             BANK.Draw(spriteBatch);
+
+            //Draws all GameObjects
+            foreach (GameObject go in gameObject)
+            {
+                go.Draw(spriteBatch);
+            }
 
             foreach (Resurser Wood in ListWOOD)
             {

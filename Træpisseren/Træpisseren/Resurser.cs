@@ -74,6 +74,7 @@ namespace Træpisseren
         public void ThreadTest()
         {
             new Resurser(position, spritestring, SpriteEffects.None, layer, origin, scale, Color.White, rotation);
+            Update();
         }
 
         private void WalkMine()

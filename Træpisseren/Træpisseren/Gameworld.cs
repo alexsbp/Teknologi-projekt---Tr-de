@@ -21,6 +21,7 @@ namespace Træpisseren
         Resurser MINE;
         Resurser BackG;
         Resurser BANK;
+        Resurser WORK;
         List<Resurser> ListWOOD; 
 
         private static Gameworld instance;
@@ -43,9 +44,7 @@ namespace Træpisseren
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = 1000;
-            graphics.PreferredBackBufferHeight = 650;
-
-             
+            graphics.PreferredBackBufferHeight = 650;             
         }
 
         /// <summary>
@@ -64,6 +63,7 @@ namespace Træpisseren
             MINE = new Resurser(new Vector2(700, 350), "mineC", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
             BackG = new Resurser(new Vector2(-100, 100), "BackG", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
             BANK = new Resurser(new Vector2(100, 350), "bankA", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
+            WORK = new Resurser(new Vector2(100, 100), "A", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
 
             ListWOOD = new List<Resurser>();
             ListWOOD.Add (new Resurser(new Vector2(650, 50), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
@@ -92,6 +92,7 @@ namespace Træpisseren
             MINE.LoadContent(Content);
             BackG.LoadContent(Content);
             BANK.LoadContent(Content);
+            WORK.LoadContent(Content);
         }
 
         /// <summary>
@@ -112,7 +113,7 @@ namespace Træpisseren
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
+            WORK.Update();
 
             base.Update(gameTime);
         }
@@ -130,6 +131,7 @@ namespace Træpisseren
             MINE.Draw(spriteBatch);
             BackG.Draw(spriteBatch);
             BANK.Draw(spriteBatch);
+            WORK.Draw(spriteBatch);
 
             foreach (Resurser Wood in ListWOOD)
             {

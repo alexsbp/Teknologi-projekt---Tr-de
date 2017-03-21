@@ -47,7 +47,7 @@ namespace Træpisseren
         }
 
         public void Update()
-        {
+        { 
             if (position.X <= 250 && position.Y == 100)
             {
                 position.X += 2;
@@ -66,6 +66,7 @@ namespace Træpisseren
         public void ThreadTest()
         {
             new Resurser(position, spritestring, SpriteEffects.None, layer, origin, scale, Color.White, rotation);
+            Update();
         }
     }
 }

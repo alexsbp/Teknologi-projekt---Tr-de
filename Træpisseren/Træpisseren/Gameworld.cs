@@ -62,8 +62,6 @@ namespace Træpisseren
             ListWOOD.Add (new Resurser(new Vector2(600, 20), "treeB", SpriteEffects.None, 0, Vector2.Zero, 0.3F, Color.White, 0));
             ListWOOD.Add (new Resurser(new Vector2(520, 60), "treeB", SpriteEffects.None, 0, Vector2.Zero, 0.3F, Color.White, 0));
 
-
-
             base.Initialize();
         }
 

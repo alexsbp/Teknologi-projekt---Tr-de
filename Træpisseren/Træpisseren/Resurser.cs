@@ -46,9 +46,24 @@ namespace Træpisseren
             sprite = content.Load<Texture2D>(spritestring);
         }
 
+        public void update ()
+        {
+            position.X += 10; 
+            if (position.X >= 1000)
+            {
+                position.X = 100; 
+            }
+        }
+
         public void Draw(SpriteBatch spritebatch)
         {
             spritebatch.Draw(sprite, position, null, color, rotation, origin, scale, SpriteEffects.FlipHorizontally, layer);
+        }
+
+        public void ThreadTest()
+        {
+            new Resurser(position,spritestring, SpriteEffects.None, layer, origin, scale, Color.White, rotation);
+            update();  
         }
 
     }

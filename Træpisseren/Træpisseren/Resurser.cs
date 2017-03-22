@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
+using System.Threading;
 
 namespace Træpisseren
 {
@@ -88,7 +89,7 @@ namespace Træpisseren
             spritebatch.Draw(sprite, position, null, color, rotation, origin, scale, SpriteEffects.FlipHorizontally, layer);
         }
 
-        public void ThreadWorker()
+        public void ThreadWorker(object obj)
         {
             new Resurser(position, spritestring, SpriteEffects.None, layer, origin, scale, Color.White, rotation);
             Update();
@@ -96,7 +97,7 @@ namespace Træpisseren
             GameWorld.score -= 1;
         }
 
-        private void WalkMine()
+        public void WalkMine()
         {
             if (position.X <= 300 && position.Y >= 100)
             {
@@ -113,16 +114,21 @@ namespace Træpisseren
             }
             if (position.X > 710)
             {
+                lock (this)
+                {
+                    this.layer = 0;
+                    Thread.Sleep(1000);
+                }
                 GameWorld.MineScore -= 1;
                 if (GameWorld.MineScore == 0)
                 {
                     //Insert here
                 }
                 
-                positionPoint += 1; 
+                positionPoint += 1;
             }
         }
-        private void WalkBase()
+        public void WalkBase()
         {
             if (position.X < 750 && position.Y < 350)
             {
@@ -142,7 +148,7 @@ namespace Træpisseren
                 positionPoint += 1;
             }
         }
-        private void WalkBank()
+        public void WalkBank()
         {
             if (position.X < 140 && position.Y < 440)
             {
@@ -153,7 +159,7 @@ namespace Træpisseren
                 bankPoint -= 1;
             }
         }
-        private void WalkHome()
+        public void WalkHome()
         {
             if (position.X < 140 && position.Y >= 146)
             {
@@ -166,14 +172,14 @@ namespace Træpisseren
                 deathPoint += 1;
             }
         }
-        private void WalkDie()
+        public void WalkDie()
         {
             if (position.X < 720 && position.Y >= 50)
             {
                 position.X += 3;
             }
             if (position.X >= 720 && position.Y >= 50)
-            {
+            {                
                 running = false;
             }
         }

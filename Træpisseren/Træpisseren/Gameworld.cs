@@ -20,6 +20,7 @@ namespace Træpisseren
         Resurser MINE;
         Resurser BackG;
         Resurser BANK;
+        public Thread t;
 
         SpriteFont scoreFont;
         private string scoreText;
@@ -141,21 +142,20 @@ namespace Træpisseren
             if (keyState.IsKeyDown(Keys.Space) && SpawnWorker && score > 0)
             {
                 Resurser work = new Resurser(new Vector2(136, 145), "B1", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
-                Thread t = new Thread(work.ThreadWorker);
+                Thread t = new Thread(new ParameterizedThreadStart(work.ThreadWorker));
                 t.Start();
                 ListWORK.Add(work);
                 work.LoadContent(Content);
                 SpawnWorker = false;
-                //work.Update();
 
-                if (work.running == false)
+                /*if (work.running == false)
                 {
                     t.Interrupt();
                     if (!t.Join(2000))
                     {
                         t.Abort();
                     }
-                }                
+                }*/               
             }            
             if (keyState.IsKeyUp(Keys.Space) && SpawnWorker == false)
             {

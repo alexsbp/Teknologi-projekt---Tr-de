@@ -20,11 +20,10 @@ namespace Træpisseren
         Resurser MINE;
         Resurser BackG;
         Resurser BANK;
-        Resurser WORK;
        
         List<Resurser> ListWOOD;
         List<Resurser> ListBASE;
-        List<Resurser> ListTEST;
+        List<Resurser> ListWORK;
         private static Gameworld instance;
         public static Gameworld Instance
         {
@@ -39,6 +38,8 @@ namespace Træpisseren
         }
 
         public float deltaTime { get; private set; }
+
+        public bool SpawnWorker;
 
         public Gameworld()
         {
@@ -55,7 +56,7 @@ namespace Træpisseren
         /// and initialize them as well.
         /// </summary>
         protected override void Initialize()
-        {           
+        {        
             MINE = new Resurser(new Vector2(700, 350), "mineC", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0);
 
             /*BASE = new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.FlipVertically, 1, Vector2.Zero, 1F, Color.White, 0);
@@ -65,19 +66,19 @@ namespace Træpisseren
             MINE = new Resurser(new Vector2(700, 350), "mineC", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0);
             BackG = new Resurser(new Vector2(-100, 100), "BackG", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
             BANK = new Resurser(new Vector2(100, 350), "bankA", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
-            WORK = new Resurser(new Vector2(100, 100), "A1", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0);
 
 
             ListWOOD = new List<Resurser>();
-            ListWOOD.Add (new Resurser(new Vector2(650, 50), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
-            ListWOOD.Add (new Resurser(new Vector2(600, 90), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
-            ListWOOD.Add (new Resurser(new Vector2(700, 45), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
-            ListWOOD.Add (new Resurser(new Vector2(600, 20), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
-            ListWOOD.Add (new Resurser(new Vector2(520, 60), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
+            ListWOOD.Add(new Resurser(new Vector2(650, 50), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
+            ListWOOD.Add(new Resurser(new Vector2(600, 90), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
+            ListWOOD.Add(new Resurser(new Vector2(700, 45), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
+            ListWOOD.Add(new Resurser(new Vector2(600, 20), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
+            ListWOOD.Add(new Resurser(new Vector2(520, 60), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
 
-            ListTEST = new List<Resurser>();
             ListBASE = new List<Resurser>();
+            ListWORK = new List<Resurser>();
             ListBASE.Add(new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0));
+            ListWORK.Add(new Resurser(new Vector2(136, 145), "B1", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0));
             base.Initialize();
         }
 
@@ -95,18 +96,19 @@ namespace Træpisseren
                 WOOD.LoadContent(Content); 
             }
 
-            foreach (Resurser BASE2 in ListBASE)
+            foreach (Resurser BASE in ListBASE)
             {
-                BASE2.LoadContent(Content);
+                BASE.LoadContent(Content);
             }
-            foreach (var tst in ListTEST)
+
+            foreach (Resurser WORK in ListWORK)
             {
-                tst.LoadContent(Content); 
+                WORK.LoadContent(Content);
             }
+
             MINE.LoadContent(Content);
             BackG.LoadContent(Content);
             BANK.LoadContent(Content);
-            WORK.LoadContent(Content);
         }
 
         /// <summary>
@@ -127,19 +129,27 @@ namespace Træpisseren
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            // TODO: Add your update logic here
-            WORK.Update();
 
             KeyboardState keyState = Keyboard.GetState();
-            if (keyState.IsKeyDown(Keys.Space))
+            if (keyState.IsKeyDown(Keys.Space) && SpawnWorker)
             {
-                foreach (var BASE2 in ListBASE)
-                {
-                    ListTEST.Add(new Resurser(new Vector2(200, 200), "mineC", SpriteEffects.FlipVertically, 0, Vector2.Zero, 1F, Color.Blue, 0));
-                }
+                Resurser work = new Resurser(new Vector2(136, 145), "B1", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0);
+                ListWORK.Add(work);
+                work.LoadContent(Content);
+                work.Update();
+                SpawnWorker = false;
+            }
+            if (keyState.IsKeyUp(Keys.Space) && SpawnWorker == false)
+            {
+                SpawnWorker = true;
             }
 
-            
+            foreach (Resurser WORK in ListWORK)
+            {
+                WORK.Update();
+            }
+
+            //WORK.Update();
             base.Update(gameTime);
         }
 
@@ -152,20 +162,20 @@ namespace Træpisseren
             GraphicsDevice.Clear(Color.Green);
 
             spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
-            foreach (var BASE2 in ListBASE)
+            foreach (Resurser BASE in ListBASE)
             {
-                BASE2.Draw(spriteBatch);
+                BASE.Draw(spriteBatch);
             }
 
             MINE.Draw(spriteBatch);
             BackG.Draw(spriteBatch);
             BANK.Draw(spriteBatch);
-            WORK.Draw(spriteBatch);
-
-            foreach (var tst in ListTEST)
+            
+            foreach (Resurser WORK in ListWORK)
             {
-                tst.Draw(spriteBatch); 
-            }
+                WORK.Draw(spriteBatch);
+            }            
+
             foreach (Resurser Wood in ListWOOD)
             {
                 Wood.Draw(spriteBatch); 

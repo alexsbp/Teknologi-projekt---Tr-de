@@ -159,8 +159,6 @@ namespace Træpisseren
 
             scoreText = "Gold" + " " + score;
 
-
-            //WORK.Update();
             base.Update(gameTime);
         }
 

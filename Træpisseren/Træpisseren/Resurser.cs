@@ -93,11 +93,11 @@ namespace Træpisseren
         {
             if (position.X <= 300 && position.Y >= 100)
             {
-                position.X += 2;
+                position.X += 5;
             }
             if (position.X >= 300 && position.Y >= 100)
             {
-                position.Y += 2;
+                position.Y += 5;
             }
             if (position.X >= 300 && position.Y >= 350)
             {

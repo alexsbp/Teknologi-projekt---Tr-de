@@ -135,12 +135,14 @@ namespace Træpisseren
             {
                 foreach (Resurser BASE in ListBASE)
                 {
-                    Resurser rs = new Resurser(new Vector2(BASE.Position.X, 100), "B1", SpriteEffects.FlipVertically, 1, Vector2.Zero, 1F, Color.White, 0);
-                    ListTEST.Add(rs);
-                    rs.LoadContent(Content);
-                    rs.Update(); 
-                    /*Thread t = new Thread(rs.ThreadTest);
-                    t.Start();*/
+                        Resurser rs = new Resurser(new Vector2(BASE.Position.X, 100), "C1", SpriteEffects.FlipVertically, 1, Vector2.Zero, 1F, Color.White, 0);
+                        ListTEST.Add(rs);
+                        rs.LoadContent(Content);
+                        rs.Update();
+
+                    Thread t = new Thread(rs.ThreadTest);
+                    t.IsBackground = true;
+                    t.Start();
                 }
                 
             }

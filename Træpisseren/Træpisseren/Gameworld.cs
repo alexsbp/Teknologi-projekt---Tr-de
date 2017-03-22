@@ -62,29 +62,30 @@ namespace Træpisseren
         /// and initialize them as well.
         /// </summary>
         protected override void Initialize()
-        {        
-            MINE = new Resurser(new Vector2(700, 350), "mineC", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0);
+        { 
 
             /*BASE = new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.FlipVertically, 1, Vector2.Zero, 1F, Color.White, 0);
             Thread t = new Thread(BASE.ThreadTest);
             t.Start();*/
 
-            MINE = new Resurser(new Vector2(700, 350), "mineC", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0);
+            MINE = new Resurser(new Vector2(700, 350), "mineC", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
             BackG = new Resurser(new Vector2(-100, 100), "BackG", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
-            BANK = new Resurser(new Vector2(100, 350), "bankA", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
+            BANK = new Resurser(new Vector2(100, 350), "bankA", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0);
 
 
             ListWOOD = new List<Resurser>();
-            ListWOOD.Add(new Resurser(new Vector2(650, 50), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
-            ListWOOD.Add(new Resurser(new Vector2(600, 90), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
+            //ListWOOD.Add(new Resurser(new Vector2(650, 50), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
+            ListWOOD.Add(new Resurser(new Vector2(620, 90), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
             ListWOOD.Add(new Resurser(new Vector2(700, 45), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
             ListWOOD.Add(new Resurser(new Vector2(600, 20), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
             ListWOOD.Add(new Resurser(new Vector2(520, 60), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
 
+            
+
             ListBASE = new List<Resurser>();
             ListWORK = new List<Resurser>();
-            ListBASE.Add(new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0));
-            ListWORK.Add(new Resurser(new Vector2(136, 145), "B1", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0));
+            ListBASE.Add(new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0));
+            ListWORK.Add(new Resurser(new Vector2(136, 145), "B1", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0));
             base.Initialize();
         }
 
@@ -144,7 +145,7 @@ namespace Træpisseren
             {
 
                 Resurser work = new Resurser(new Vector2(136, 145), "B1", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0);
-                Thread t = new Thread(work.ThreadTest);
+                Thread t = new Thread(work.ThreadWorker);
                 t.Start();
                 ListWORK.Add(work);
                 work.LoadContent(Content);
@@ -208,8 +209,8 @@ namespace Træpisseren
                 Wood.Draw(spriteBatch); 
             }
 
-            spriteBatch.DrawString(scoreFont, scoreText, new Vector2(10, 10), Color.Gold, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
-            spriteBatch.DrawString(scoreFont, MineText, new Vector2(700, 340), Color.Gold, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
+            spriteBatch.DrawString(scoreFont, scoreText, new Vector2(120, 55), Color.Gold, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
+            spriteBatch.DrawString(scoreFont, MineText, new Vector2(700, 330), Color.Gold, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
              
             spriteBatch.End(); 
 

@@ -83,7 +83,7 @@ namespace Træpisseren
             spritebatch.Draw(sprite, position, null, color, rotation, origin, scale, SpriteEffects.FlipHorizontally, layer);
         }
 
-        public void ThreadTest()
+        public void ThreadWorker()
         {
             new Resurser(position, spritestring, SpriteEffects.None, layer, origin, scale, Color.White, rotation);
             Update();
@@ -93,27 +93,27 @@ namespace Træpisseren
             Gameworld.SpawnWorker = false; 
         }
 
-        private void WalkMine()
+        public void WalkMine()
         {
             if (position.X <= 300 && position.Y >= 100)
             {
-                position.X += 5;
+                position.X += 3;
             }
             if (position.X >= 300 && position.Y >= 100)
             {
-                position.Y += 5;
+                position.Y += 3;
             }
             if (position.X >= 300 && position.Y >= 350)
             {
-                position.X += 5;
-                position.Y -= 5;
+                position.X += 3;
+                position.Y -= 3;
             }
             if (position.X > 710)
             {
                 Gameworld.MineScore -= 1;
                 if (Gameworld.MineScore == 0)
                 {
-                     
+                    
                 }
                 
                 positionPoint += 1; 
@@ -124,16 +124,16 @@ namespace Træpisseren
         {
             if (position.X < 750 && position.Y < 350)
             {
-                position.X -= 5;
+                position.X -= 3;
             }
             if (position.X < 340 && position.Y >= 146)
             {
-                position.Y -= 5;
-                position.X += 5;
+                position.Y -= 3;
+                position.X += 3;
             }
             if (position.X >= 330 && position.Y < 146)
             {
-                position.X -= 5;
+                position.X -= 3;
             }
             if (position.X < 140)
             {
@@ -145,7 +145,7 @@ namespace Træpisseren
         {
             if (position.X < 140 && position.Y < 440)
             {
-                position.Y += 5;
+                position.Y += 3;
             }
             if (position.X < 140 && position.Y > 430)
             {
@@ -156,7 +156,7 @@ namespace Træpisseren
         {
             if (position.X < 140 && position.Y >= 146)
             {
-                position.Y -= 5;
+                position.Y -= 3;
             }
             if (position.X < 140 && position.Y <= 146)
             {

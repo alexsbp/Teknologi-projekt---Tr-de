@@ -157,3 +157,9 @@
 /processorParam:TextureFormat=Color
 /build:Bmine.png
 
+#begin ScoreFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:ScoreFont.spritefont
+

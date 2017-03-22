@@ -20,7 +20,11 @@ namespace Træpisseren
         Resurser MINE;
         Resurser BackG;
         Resurser BANK;
-       
+
+        SpriteFont scoreFont;
+        private string scoreText;
+        public static decimal score;
+
         List<Resurser> ListWOOD;
         List<Resurser> ListBASE;
         List<Resurser> ListWORK;
@@ -109,6 +113,8 @@ namespace Træpisseren
             MINE.LoadContent(Content);
             BackG.LoadContent(Content);
             BANK.LoadContent(Content);
+
+            scoreFont = Content.Load<SpriteFont>("ScoreFont");
         }
 
         /// <summary>
@@ -130,9 +136,11 @@ namespace Træpisseren
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+
             KeyboardState keyState = Keyboard.GetState();
             if (keyState.IsKeyDown(Keys.Space) && SpawnWorker)
             {
+
                 Resurser work = new Resurser(new Vector2(136, 145), "B1", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0);
                 ListWORK.Add(work);
                 work.LoadContent(Content);
@@ -149,7 +157,8 @@ namespace Træpisseren
                 WORK.Update();
             }
 
-            //WORK.Update();
+            scoreText = "Gold" + " " + score;
+
             base.Update(gameTime);
         }
 
@@ -180,6 +189,8 @@ namespace Træpisseren
             {
                 Wood.Draw(spriteBatch); 
             }
+
+            spriteBatch.DrawString(scoreFont, scoreText, new Vector2(10, 10), Color.Gold, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
 
             spriteBatch.End(); 
 

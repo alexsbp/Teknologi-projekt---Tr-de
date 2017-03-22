@@ -34,8 +34,8 @@ namespace Træpisseren
 
         public Resurser(Vector2 position, string sprite, SpriteEffects effect, float layer, Vector2 origin, float scale, Color color, float rotation)
         {
-            this.spritestring = sprite;
             this.position = position;
+            this.spritestring = sprite;
             this.effects = effect;
             this.layer = layer;
             this.origin = origin;
@@ -81,11 +81,11 @@ namespace Træpisseren
             spritebatch.Draw(sprite, position, null, color, rotation, origin, scale, SpriteEffects.FlipHorizontally, layer);
         }
 
-        public void ThreadTest()
+        /*public void ThreadTest()
         {
             new Resurser(position, spritestring, SpriteEffects.None, layer, origin, scale, Color.White, rotation);
             Update();
-        }
+        }*/
 
         private void WalkMine()
         {

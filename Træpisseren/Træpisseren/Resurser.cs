@@ -82,12 +82,12 @@ namespace Træpisseren
             spritebatch.Draw(sprite, position, null, color, rotation, origin, scale, SpriteEffects.FlipHorizontally, layer);
         }
 
-        public void ThreadTest()
+        /*public void ThreadTest()
         {
             new Resurser(position, spritestring, SpriteEffects.None, layer, origin, scale, Color.White, rotation);
             
             Update();
-        }
+        }*/
 
         private void WalkMine()
         {

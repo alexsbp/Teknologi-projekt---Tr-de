@@ -177,8 +177,6 @@ namespace Træpisseren
             scoreText = "Gold: " + " " + score;
             MineText = "Gold Mine: " + " " + MineScore;
 
-
-            //WORK.Update();
             base.Update(gameTime);
         }
 

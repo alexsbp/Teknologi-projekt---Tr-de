@@ -14,7 +14,7 @@ namespace Træpisseren
     {
         private int positionPoint = 0;
         private int bankPoint = 0;
-        private int deathPoint = 3;
+        private int deathPoint = 0;
         public bool running = true;
 
         private Vector2 position;

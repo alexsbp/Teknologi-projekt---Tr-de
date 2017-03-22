@@ -64,10 +64,6 @@ namespace Træpisseren
         /// </summary>
         protected override void Initialize()
         {
-            /*Resurser resurse = new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
-            Thread t = new Thread(resurse.ThreadWorker);
-            t.Start();*/
-
             /*BASE = new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.FlipVertically, 1, Vector2.Zero, 1F, Color.White, 0);
             Thread t = new Thread(BASE.ThreadTest);
             t.Start();*/
@@ -86,7 +82,7 @@ namespace Træpisseren
             ListBASE = new List<Resurser>();
             ListWORK = new List<Resurser>();
             ListBASE.Add(new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0));
-            //ListWORK.Add(new Resurser(new Vector2(136, 145), "B1", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0));
+            ListWORK.Add(new Resurser(new Vector2(136, 145), "B1", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0));
             base.Initialize();
         }
 
@@ -98,7 +94,7 @@ namespace Træpisseren
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-             
+            
             foreach (Resurser WOOD in ListWOOD)
             {
                 WOOD.LoadContent(Content); 

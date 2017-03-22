@@ -14,7 +14,8 @@ namespace Træpisseren
     {
         private int positionPoint = 0;
         private int bankPoint = 0;
-
+        private int deathPoint = 3;
+        public bool running = true;
 
         private Vector2 position;
         public Vector2 Position
@@ -53,7 +54,7 @@ namespace Træpisseren
 
         public void Update()
         {
-            if (positionPoint == 0 && bankPoint == 0)
+            if (positionPoint == 0 && bankPoint == 0 && deathPoint == 0 || positionPoint == 0 && bankPoint == 0 && deathPoint == 1 || positionPoint == 0 && bankPoint == 0 && deathPoint == 2)
             {
                 WalkMine();
             }
@@ -63,18 +64,22 @@ namespace Træpisseren
             }
             if (positionPoint == 2)
             {
-                position.X = 136;
+                position.X = 136; //Resets the worker's position briefly
                 position.Y = 145;
-                positionPoint -= 2;
-                bankPoint += 2;
+                positionPoint -= 2; //Makes sure the worker won't go to the mine, before visiting the bank
+                bankPoint += 2; //Makes it so the worker walks to the bank
             }
-            if (bankPoint == 2 && positionPoint == 0)
+            if (positionPoint == 0 && bankPoint == 2)
             {
                 WalkBank();
             }
-            if (bankPoint == 1 && positionPoint == 0)
+            if (positionPoint == 0 && bankPoint == 1)
             {
                 WalkHome();
+            }
+            if (positionPoint == 0 && bankPoint == 0 && deathPoint == 3)
+            {
+                WalkDie(); //After the worker has done the same routine 3 times, the worker will go to the woods to die
             }
         }
 
@@ -88,12 +93,10 @@ namespace Træpisseren
             new Resurser(position, spritestring, SpriteEffects.None, layer, origin, scale, Color.White, rotation);
             Update();
              
-            Gameworld.score -= 1;
-            
-            Gameworld.SpawnWorker = false; 
+            GameWorld.score -= 1;
         }
 
-        public void WalkMine()
+        private void WalkMine()
         {
             if (position.X <= 300 && position.Y >= 100)
             {
@@ -110,16 +113,15 @@ namespace Træpisseren
             }
             if (position.X > 710)
             {
-                Gameworld.MineScore -= 1;
-                if (Gameworld.MineScore == 0)
+                GameWorld.MineScore -= 1;
+                if (GameWorld.MineScore == 0)
                 {
-                    
+                    //Insert here
                 }
                 
                 positionPoint += 1; 
             }
         }
-
         private void WalkBase()
         {
             if (position.X < 750 && position.Y < 350)
@@ -140,7 +142,6 @@ namespace Træpisseren
                 positionPoint += 1;
             }
         }
-
         private void WalkBank()
         {
             if (position.X < 140 && position.Y < 440)
@@ -161,7 +162,19 @@ namespace Træpisseren
             if (position.X < 140 && position.Y <= 146)
             {
                 bankPoint -= 1;
-                Gameworld.score += 1;
+                GameWorld.score += 1;
+                deathPoint += 1;
+            }
+        }
+        private void WalkDie()
+        {
+            if (position.X < 720 && position.Y >= 50)
+            {
+                position.X += 3;
+            }
+            if (position.X >= 720 && position.Y >= 50)
+            {
+                running = false;
             }
         }
     }

@@ -47,7 +47,7 @@ namespace Træpisseren
 
         public void Update()
         {
-            timeElapsed += Gameworld.Instance.deltaTime;
+            timeElapsed += GameWorld.Instance.deltaTime;
 
             currentIndex = (int)(timeElapsed * fps);
 

@@ -70,7 +70,7 @@
     <Compile Include="ComponentsPattern\Interfaces\ILoadable.cs" />
     <Compile Include="ComponentsPattern\Interfaces\IUpdateable.cs" />
     <Compile Include="ComponentsPattern\Worker.cs" />
-    <Compile Include="Gameworld.cs" />
+    <Compile Include="GameWorld.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resurser.cs" />

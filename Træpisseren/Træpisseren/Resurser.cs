@@ -13,7 +13,7 @@ namespace Træpisseren
     class Resurser
     {
         private int positionPoint = 0;
-        private int bankPoint = 0;        
+        private int bankPoint = 0;
 
         private Vector2 position;
         public Vector2 Position
@@ -23,6 +23,7 @@ namespace Træpisseren
                 return position;
             }
         }
+
         private Texture2D sprite;
         private string spritestring;
         private SpriteEffects effects;
@@ -81,11 +82,12 @@ namespace Træpisseren
             spritebatch.Draw(sprite, position, null, color, rotation, origin, scale, SpriteEffects.FlipHorizontally, layer);
         }
 
-        /*public void ThreadTest()
+        public void ThreadTest()
         {
             new Resurser(position, spritestring, SpriteEffects.None, layer, origin, scale, Color.White, rotation);
+            
             Update();
-        }*/
+        }
 
         private void WalkMine()
         {
@@ -104,7 +106,7 @@ namespace Træpisseren
             }
             if (position.X > 710)
             {
-                positionPoint += 1;
+                positionPoint += 1; 
             }
         }
 
@@ -149,6 +151,7 @@ namespace Træpisseren
             if (position.X < 140 && position.Y <= 146)
             {
                 bankPoint -= 1;
+                Gameworld.score += 1;
             }
         }
     }

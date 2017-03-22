@@ -148,7 +148,6 @@ namespace Træpisseren
                 WORK.Update();
             }
 
-            //WORK.Update();
             base.Update(gameTime);
         }
 

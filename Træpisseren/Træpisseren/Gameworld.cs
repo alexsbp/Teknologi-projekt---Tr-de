@@ -23,7 +23,9 @@ namespace Træpisseren
 
         SpriteFont scoreFont;
         private string scoreText;
-        public static decimal score;
+        private string MineText;
+        public static int score;
+        public static int MineScore = 100;
 
         List<Resurser> ListWOOD;
         List<Resurser> ListBASE;
@@ -43,7 +45,7 @@ namespace Træpisseren
 
         public float deltaTime { get; private set; }
 
-        public bool SpawnWorker;
+        public static bool SpawnWorker;
 
         public Gameworld()
         {
@@ -94,7 +96,7 @@ namespace Træpisseren
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+             
             foreach (Resurser WOOD in ListWOOD)
             {
                 WOOD.LoadContent(Content); 
@@ -138,26 +140,42 @@ namespace Træpisseren
 
 
             KeyboardState keyState = Keyboard.GetState();
-            if (keyState.IsKeyDown(Keys.Space) && SpawnWorker)
+            if (keyState.IsKeyDown(Keys.Space) && SpawnWorker && score > 0)
             {
 
                 Resurser work = new Resurser(new Vector2(136, 145), "B1", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0);
+                Thread t = new Thread(work.ThreadTest);
+                t.Start();
                 ListWORK.Add(work);
                 work.LoadContent(Content);
-                work.Update();
-                SpawnWorker = false;
+                //work.Update();
+                //SpawnWorker = false;
             }
+            
             if (keyState.IsKeyUp(Keys.Space) && SpawnWorker == false)
             {
                 SpawnWorker = true;
             }
+
+            /*if (score >= 2)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    foreach (var die in ListWOOD)
+                    {
+                        die.Die(); 
+                    }
+                }
+
+            }*/
 
             foreach (Resurser WORK in ListWORK)
             {
                 WORK.Update();
             }
 
-            scoreText = "Gold" + " " + score;
+            scoreText = "Gold: " + " " + score;
+            MineText = "Gold Mine: " + " " + MineScore;
 
 
             //WORK.Update();
@@ -193,7 +211,8 @@ namespace Træpisseren
             }
 
             spriteBatch.DrawString(scoreFont, scoreText, new Vector2(10, 10), Color.Gold, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
-
+            spriteBatch.DrawString(scoreFont, MineText, new Vector2(700, 340), Color.Gold, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
+             
             spriteBatch.End(); 
 
             base.Draw(gameTime);

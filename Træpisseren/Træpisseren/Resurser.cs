@@ -15,6 +15,7 @@ namespace Træpisseren
         private int positionPoint = 0;
         private int bankPoint = 0;
 
+
         private Vector2 position;
         public Vector2 Position
         {
@@ -85,19 +86,22 @@ namespace Træpisseren
         public void ThreadTest()
         {
             new Resurser(position, spritestring, SpriteEffects.None, layer, origin, scale, Color.White, rotation);
-            
             Update();
+             
+            Gameworld.score -= 1;
+            
+            Gameworld.SpawnWorker = false; 
         }
 
         private void WalkMine()
         {
             if (position.X <= 300 && position.Y >= 100)
             {
-                position.X += 2;
+                position.X += 5;
             }
             if (position.X >= 300 && position.Y >= 100)
             {
-                position.Y += 2;
+                position.Y += 5;
             }
             if (position.X >= 300 && position.Y >= 350)
             {
@@ -106,6 +110,12 @@ namespace Træpisseren
             }
             if (position.X > 710)
             {
+                Gameworld.MineScore -= 1;
+                if (Gameworld.MineScore == 0)
+                {
+                     
+                }
+                
                 positionPoint += 1; 
             }
         }

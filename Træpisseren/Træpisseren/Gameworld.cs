@@ -116,7 +116,7 @@ namespace Træpisseren
             BackG.LoadContent(Content);
             BANK.LoadContent(Content);
 
-            scoreFont = Content.Load<SpriteFont>("ScoreFont");
+            scoreFont = Content.Load<SpriteFont>("ScoreFont"); 
         }
 
         /// <summary>

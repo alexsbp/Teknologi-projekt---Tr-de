@@ -20,6 +20,7 @@ namespace Træpisseren
         Resurser MINE;
         Resurser BackG;
         Resurser BANK;
+        public Thread t1; 
 
         SpriteFont scoreFont;
         private string scoreText;
@@ -75,10 +76,10 @@ namespace Træpisseren
 
             ListWOOD = new List<Resurser>();
             //ListWOOD.Add(new Resurser(new Vector2(650, 50), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
-            ListWOOD.Add(new Resurser(new Vector2(620, 90), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
-            ListWOOD.Add(new Resurser(new Vector2(700, 45), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
-            ListWOOD.Add(new Resurser(new Vector2(600, 20), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
-            ListWOOD.Add(new Resurser(new Vector2(520, 60), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
+            ListWOOD.Add(new Resurser(new Vector2(620, 90), "treeB", SpriteEffects.None, 0.1F, Vector2.Zero, 0.3F, Color.White, 0));
+            ListWOOD.Add(new Resurser(new Vector2(700, 45), "treeB", SpriteEffects.None, 0.3F, Vector2.Zero, 0.3F, Color.White, 0));
+            ListWOOD.Add(new Resurser(new Vector2(600, 20), "treeB", SpriteEffects.None, 0.2F, Vector2.Zero, 0.3F, Color.White, 0));
+            ListWOOD.Add(new Resurser(new Vector2(520, 60), "treeB", SpriteEffects.None, 0.4F, Vector2.Zero, 0.3F, Color.White, 0));
 
             
 
@@ -145,8 +146,9 @@ namespace Træpisseren
             {
 
                 Resurser work = new Resurser(new Vector2(136, 145), "B1", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0);
-                Thread t = new Thread(work.ThreadWorker);
-                t.Start();
+                t1 = new Thread(work.ThreadWorker);
+                t1.IsBackground = true; 
+                t1.Start();
                 ListWORK.Add(work);
                 work.LoadContent(Content);
                 //work.Update();

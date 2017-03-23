@@ -110,6 +110,7 @@ namespace Træpisseren
             }
             if (position.X > 710)
             {
+                
                 Gameworld.MineScore -= 1;
                 if (Gameworld.MineScore == 0)
                 {

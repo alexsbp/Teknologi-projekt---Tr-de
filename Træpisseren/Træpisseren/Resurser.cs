@@ -130,10 +130,13 @@ namespace Træpisseren
             }
             if (position.X > 710)
             {
-                lock(mineLock)
+                lock (thisLock)
                 {
-                    this.layer = 0;
+                    position.X = 750;
+                    position.Y = 350; 
+                    this.layer = 0.5F;
                     Thread.Sleep(1000);
+                    
                 }
                 this.layer = 0.5F;
                 GameWorld.MineScore -= 1;
@@ -148,7 +151,7 @@ namespace Træpisseren
         public void WalkBase()
         {
             Thread.Sleep(10);
-            if (position.X < 750 && position.Y < 350)
+            if (position.X < 760 && position.Y < 360)
             {
                 position.X -= 3;
             }
@@ -173,6 +176,7 @@ namespace Træpisseren
             {
                 position.Y += 3;
             }
+
             if (position.X < 140 && position.Y > 430)
             {
                 bankPoint -= 1;

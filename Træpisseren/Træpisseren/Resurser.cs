@@ -128,7 +128,7 @@ namespace Træpisseren
                 position.X += 3;
                 position.Y -= 3;
             }
-            if (position.X > 710)
+            if (position.X > 690)
             {
                 lock (mineLock)
                 {

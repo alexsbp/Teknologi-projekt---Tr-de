@@ -22,7 +22,7 @@ namespace Træpisseren
         static Semaphore bankSema = new Semaphore(5, 5);
         private int positionPoint = 0;
         private int bankPoint = 0;
-        private int deathPoint = 0;
+        private int deathPoint = 3;
         public bool running = true;
         Thread t1;
         MyType type;
@@ -56,10 +56,10 @@ namespace Træpisseren
             this.rotation = rotation;
             this.type = type;
             if(type == MyType.Miner)
-            { 
-            this.t1 = new Thread(ThreadWorker);
-            this.t1.IsBackground = true;
-            this.t1.Start();
+            {
+                this.t1 = new Thread(ThreadWorker);
+                this.t1.IsBackground = true;
+                this.t1.Start();
             }
         }
 
@@ -111,7 +111,17 @@ namespace Træpisseren
             {
                 Update();
             }
-            t1.Abort(this);        
+            this.t1.Abort();
+            foreach (var go in GameWorld.Instance.ListWORK)
+            {
+                if (go.Equals(this))
+                {
+                    GameWorld.Instance.objectsToRemove.Add(this);
+                }
+                GameWorld.Instance.ListWORK.Remove(this);
+            }
+            GameWorld.Instance.objectsToRemove.Clear();
+            //GameWorld.Instance.ListWORK.Remove(this);
         }
 
         public void WalkMine()

@@ -184,9 +184,11 @@ namespace Træpisseren
                 bankSema.WaitOne();
                 position.X = 136;
                 position.Y = 433;
+                GameWorld.BankScore += 1; 
                 this.layer = 0.8F;
-                Thread.Sleep(3000);
+                Thread.Sleep(5500);
                 bankSema.Release();
+                GameWorld.BankScore -= 1;
                 this.layer = 0.5F;
                 bankPoint -= 1;
             }

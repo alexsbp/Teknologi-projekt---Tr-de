@@ -22,7 +22,6 @@ namespace Træpisseren
         Resurser BANK;
         static Object dorker = new Object();
         public Thread t1;
-        Resurser RS; 
 
         SpriteFont scoreFont;
         private string scoreText;

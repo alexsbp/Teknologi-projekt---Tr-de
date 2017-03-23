@@ -106,7 +106,6 @@ namespace Træpisseren
         public void ThreadWorker(object obj)
         {
             GameWorld.score -= 1;
-            // new Resurser(position, spritestring, SpriteEffects.None, layer, origin, scale, Color.White, rotation);
             while (running)
             {
                 Update();

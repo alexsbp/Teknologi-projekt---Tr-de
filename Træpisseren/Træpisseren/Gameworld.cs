@@ -15,6 +15,8 @@ namespace Træpisseren
     /// </summary>
     public class GameWorld : Game
     {
+        Resurser RS;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Resurser MINE;
@@ -33,6 +35,12 @@ namespace Træpisseren
         List<Resurser> ListWOOD;
         List<Resurser> ListBASE;
         List<Resurser> ListWORK;
+        public List<Resurser> ListWORK1
+        {
+            get { return ListWORK; }
+            private set { ListWORK = value; }
+        }
+        List<Resurser> ListKillWORK;
         private static GameWorld instance;
         public static GameWorld Instance
         {
@@ -47,6 +55,8 @@ namespace Træpisseren
         }
 
         public float deltaTime { get; private set; }
+
+
 
         public static bool SpawnWorker;
         public static bool EzMoneyz;
@@ -139,6 +149,14 @@ namespace Træpisseren
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            foreach (Resurser Kill in ListWORK)
+            {
+                ListKillWORK.Add(Kill);
+                if (RS.running != true)
+                {
+                    
+                }
+            }
 
             KeyboardState keyState = Keyboard.GetState();
             if (keyState.IsKeyDown(Keys.Space) && SpawnWorker && score > 0)
@@ -196,7 +214,7 @@ namespace Træpisseren
             foreach (Resurser WORK in ListWORK)
             {
                 WORK.Draw(spriteBatch);
-            }            
+            }
             
             foreach (Resurser Wood in ListWOOD)
             {

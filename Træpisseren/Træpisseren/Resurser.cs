@@ -11,12 +11,12 @@ using System.Threading;
 
 namespace Træpisseren
 {
-    enum MyType
+    public enum MyType
     {
         Miner,
         NotMiner
     }
-    class Resurser
+    public class Resurser
     {
         static Object mineLock = new Object();
         static Semaphore bankSema = new Semaphore(5, 5);
@@ -110,7 +110,8 @@ namespace Træpisseren
             while (running)
             {
                 Update();
-            }             
+            }
+            t1.Abort(this);        
         }
 
         public void WalkMine()
@@ -216,6 +217,7 @@ namespace Træpisseren
             }
             if (position.X >= 720 && position.Y >= 50)
             {
+               
                 running = false;
             }
         }

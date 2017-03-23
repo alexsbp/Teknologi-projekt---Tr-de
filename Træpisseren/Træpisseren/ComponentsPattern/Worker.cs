@@ -80,7 +80,7 @@ namespace Træpisseren
             }
 
             //Move the player's gameobject framerate independent
-            gameObject.transform.Translate(translation * speed * Gameworld.Instance.deltaTime);
+            gameObject.transform.Translate(translation * speed * GameWorld.Instance.deltaTime);
         }
 
         /// <summary>

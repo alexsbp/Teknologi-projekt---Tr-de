@@ -133,8 +133,7 @@ namespace Træpisseren
             {
                 lock (this)
                 {
-                    this.layer = 0;
-                    GameWorld.Instance.t1.Join(1000); 
+                    this.layer = 0; 
                 }
                 GameWorld.MineScore -= 1;
                 if (GameWorld.MineScore == 0)

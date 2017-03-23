@@ -11,13 +11,19 @@ using System.Threading;
 
 namespace Træpisseren
 {
+    enum MyType
+    {
+        Miner,
+        NotMiner
+    }
     class Resurser
     {
         private int positionPoint = 0;
         private int bankPoint = 0;
         private int deathPoint = 0;
         public bool running = true;
-        
+        Thread t1;
+        MyType type;
         private Vector2 position;
         public Vector2 Position
         {
@@ -37,7 +43,7 @@ namespace Træpisseren
         private float rotation;
         private Thread Thread1; 
 
-        public Resurser(Vector2 position, string sprite, SpriteEffects effect, float layer, Vector2 origin, float scale, Color color, float rotation)
+        public Resurser(Vector2 position, string sprite, SpriteEffects effect, float layer, Vector2 origin, float scale, Color color, float rotation,MyType type)
         {
             this.position = position;
             this.spritestring = sprite;
@@ -47,7 +53,13 @@ namespace Træpisseren
             this.scale = scale;
             this.color = color;
             this.rotation = rotation;
-            this.Thread1 = new Thread(ThreadWorker);  
+            this.type = type;
+            if(type == MyType.Miner)
+            { 
+            this.t1 = new Thread(ThreadWorker);
+            this.t1.IsBackground = true;
+            this.t1.Start();
+            }
         }
 
         public void LoadContent(ContentManager content)
@@ -93,13 +105,17 @@ namespace Træpisseren
 
         public void ThreadWorker(object obj)
         {
-            new Resurser(position, spritestring, SpriteEffects.None, layer, origin, scale, Color.White, rotation);
-            Update();
             GameWorld.score -= 1;
+            // new Resurser(position, spritestring, SpriteEffects.None, layer, origin, scale, Color.White, rotation);
+            while (running)
+            {
+                Update();
+            }             
         }
 
         public void WalkMine()
         {
+            Thread.Sleep(10);
             if (position.X <= 300 && position.Y >= 100)
             {
                 position.X += 3;
@@ -131,6 +147,7 @@ namespace Træpisseren
         }
         public void WalkBase()
         {
+            Thread.Sleep(10);
             if (position.X < 750 && position.Y < 350)
             {
                 position.X -= 3;
@@ -151,6 +168,7 @@ namespace Træpisseren
         }
         public void WalkBank()
         {
+            Thread.Sleep(10);
             if (position.X < 140 && position.Y < 440)
             {
                 position.Y += 3;
@@ -162,6 +180,7 @@ namespace Træpisseren
         }
         public void WalkHome()
         {
+            Thread.Sleep(10);
             if (position.X < 140 && position.Y >= 146)
             {
                 position.Y -= 3;
@@ -175,6 +194,7 @@ namespace Træpisseren
         }
         public void WalkDie()
         {
+            Thread.Sleep(10);
             if (position.X < 720 && position.Y >= 50)
             {
                 position.X += 3;

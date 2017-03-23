@@ -76,10 +76,10 @@ namespace Træpisseren
 
             ListWOOD = new List<Resurser>();
             //ListWOOD.Add(new Resurser(new Vector2(650, 50), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
-            ListWOOD.Add(new Resurser(new Vector2(620, 90), "treeB", SpriteEffects.None, 0.1F, Vector2.Zero, 0.3F, Color.White, 0, MyType.NotMiner));
-            ListWOOD.Add(new Resurser(new Vector2(700, 45), "treeB", SpriteEffects.None, 0.3F, Vector2.Zero, 0.3F, Color.White, 0, MyType.NotMiner));
+            ListWOOD.Add(new Resurser(new Vector2(620, 90), "treeB", SpriteEffects.None, 0.8F, Vector2.Zero, 0.3F, Color.White, 0, MyType.NotMiner));
+            ListWOOD.Add(new Resurser(new Vector2(700, 45), "treeB", SpriteEffects.None, 0.7F, Vector2.Zero, 0.3F, Color.White, 0, MyType.NotMiner));
             ListWOOD.Add(new Resurser(new Vector2(600, 20), "treeB", SpriteEffects.None, 0.2F, Vector2.Zero, 0.3F, Color.White, 0, MyType.NotMiner));
-            ListWOOD.Add(new Resurser(new Vector2(520, 60), "treeB", SpriteEffects.None, 0.4F, Vector2.Zero, 0.3F, Color.White, 0, MyType.NotMiner));
+            ListWOOD.Add(new Resurser(new Vector2(520, 60), "treeB", SpriteEffects.None, 0.6F, Vector2.Zero, 0.3F, Color.White, 0, MyType.NotMiner));
 
             ListBASE = new List<Resurser>();
             ListWORK = new List<Resurser>();

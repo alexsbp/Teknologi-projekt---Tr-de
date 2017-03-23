@@ -20,7 +20,7 @@ namespace Træpisseren
         Resurser MINE;
         Resurser BackG;
         Resurser BANK;
-        public Thread t;
+        public Thread t1;
 
         SpriteFont scoreFont;
         private string scoreText;
@@ -83,7 +83,7 @@ namespace Træpisseren
             ListBASE = new List<Resurser>();
             ListWORK = new List<Resurser>();
             ListBASE.Add(new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0));
-            ListWORK.Add(new Resurser(new Vector2(136, 145), "B1", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0));
+            ListWORK.Add(new Resurser(new Vector2(136, 145), "B1", SpriteEffects.None, 0.5F, Vector2.Zero, 1F, Color.White, 0));
             base.Initialize();
         }
 
@@ -141,9 +141,9 @@ namespace Træpisseren
             KeyboardState keyState = Keyboard.GetState();
             if (keyState.IsKeyDown(Keys.Space) && SpawnWorker && score > 0)
             {
-                Resurser work = new Resurser(new Vector2(136, 145), "B1", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
-                Thread t = new Thread(new ParameterizedThreadStart(work.ThreadWorker));
-                t.Start();
+                Resurser work = new Resurser(new Vector2(136, 145), "B1", SpriteEffects.None, 0.5F, Vector2.Zero, 1F, Color.White, 0);
+                t1 = new Thread(new ParameterizedThreadStart(work.ThreadWorker));
+                t1.Start();
                 ListWORK.Add(work);
                 work.LoadContent(Content);
                 SpawnWorker = false;

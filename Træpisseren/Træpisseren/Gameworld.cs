@@ -20,7 +20,6 @@ namespace Træpisseren
         Resurser MINE;
         Resurser BackG;
         Resurser BANK;
-        static Object dorker = new Object();
         public Thread t1;
 
         SpriteFont scoreFont;
@@ -74,7 +73,7 @@ namespace Træpisseren
 
             MINE = new Resurser(new Vector2(700, 350), "mineC", SpriteEffects.None, 1, Vector2.Zero, 1.2F, Color.White, 0,MyType.NotMiner);
             BackG = new Resurser(new Vector2(-100, 100), "BackG", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0,MyType.NotMiner);
-            BANK = new Resurser(new Vector2(100, 350), "bankA", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0, MyType.NotMiner);
+            BANK = new Resurser(new Vector2(100, 350), "bankA", SpriteEffects.None, 0.7F, Vector2.Zero, 1F, Color.White, 0, MyType.NotMiner);
 
             ListWOOD = new List<Resurser>();
             //ListWOOD.Add(new Resurser(new Vector2(650, 50), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
@@ -175,20 +174,6 @@ namespace Træpisseren
 
             base.Update(gameTime);
         }
-
-        /*static void CreateWorker(object obj)
-        {
-            Resurser work = new Resurser(new Vector2(136, 145), "B1", SpriteEffects.None, 0.5F, Vector2.Zero, 1F, Color.White, 0);
-            GameWorld.Instance.t1 = new Thread(new ParameterizedThreadStart(work.ThreadWorker));
-            GameWorld.Instance.t1.Start();
-            ListWORK.Add(work);
-            work.LoadContent(Content);
-
-            if (work.Position.X > 200)
-            {
-                Thread.Sleep(1000);
-            }
-        }*/
 
         /// <summary>
         /// This is called when the game should draw itself.

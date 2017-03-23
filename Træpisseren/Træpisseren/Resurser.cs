@@ -19,6 +19,7 @@ namespace Træpisseren
     class Resurser
     {
         static Object mineLock = new Object();
+        static Semaphore bankSema = new Semaphore(5, 5);
         private int positionPoint = 0;
         private int bankPoint = 0;
         private int deathPoint = 0;
@@ -136,8 +137,7 @@ namespace Træpisseren
                     position.Y = 370;
                     this.scale = 0.2F; 
                     this.layer = 0.5F;
-                    Thread.Sleep(1000);
-                    
+                    Thread.Sleep(1000);                    
                 }
                 this.layer = 0.6F;
                 this.scale = 1; 
@@ -179,8 +179,15 @@ namespace Træpisseren
                 position.Y += 3;
             }
 
-            if (position.X < 140 && position.Y > 430)
+            if (position.X < 140 && position.Y > 300)
             {
+                bankSema.WaitOne();
+                position.X = 136;
+                position.Y = 433;
+                this.layer = 0.8F;
+                Thread.Sleep(3000);
+                bankSema.Release();
+                this.layer = 0.5F;
                 bankPoint -= 1;
             }
         }
@@ -206,7 +213,7 @@ namespace Træpisseren
                 position.X += 3;
             }
             if (position.X >= 720 && position.Y >= 50)
-            {                
+            {
                 running = false;
             }
         }

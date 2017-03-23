@@ -17,7 +17,7 @@ namespace Træpisseren
         private int bankPoint = 0;
         private int deathPoint = 0;
         public bool running = true;
-
+        
         private Vector2 position;
         public Vector2 Position
         {
@@ -35,6 +35,7 @@ namespace Træpisseren
         private float scale;
         private Color color;
         private float rotation;
+        private Thread Thread1; 
 
         public Resurser(Vector2 position, string sprite, SpriteEffects effect, float layer, Vector2 origin, float scale, Color color, float rotation)
         {
@@ -46,6 +47,7 @@ namespace Træpisseren
             this.scale = scale;
             this.color = color;
             this.rotation = rotation;
+            this.Thread1 = new Thread(ThreadWorker);  
         }
 
         public void LoadContent(ContentManager content)
@@ -93,7 +95,6 @@ namespace Træpisseren
         {
             new Resurser(position, spritestring, SpriteEffects.None, layer, origin, scale, Color.White, rotation);
             Update();
-             
             GameWorld.score -= 1;
         }
 
@@ -117,7 +118,7 @@ namespace Træpisseren
                 lock (this)
                 {
                     this.layer = 0;
-                    Thread.Sleep(1000);
+                    GameWorld.Instance.t1.Join(1000); 
                 }
                 GameWorld.MineScore -= 1;
                 if (GameWorld.MineScore == 0)

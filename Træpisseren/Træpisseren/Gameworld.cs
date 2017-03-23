@@ -26,8 +26,10 @@ namespace Træpisseren
         SpriteFont scoreFont;
         private string scoreText;
         private string MineText;
+        private string BankText; 
         public static int score = 1;
         public static int MineScore = 100;
+        private static int BankScore; 
 
         List<Resurser> ListWOOD;
         List<Resurser> ListBASE;
@@ -169,6 +171,7 @@ namespace Træpisseren
 
             scoreText = "Gold: " + " " + score;
             MineText = "Gold Mine: " + " " + MineScore;
+            BankText = "Workers in bank: " + " " + BankScore;  
 
             base.Update(gameTime);
         }
@@ -217,7 +220,7 @@ namespace Træpisseren
 
             spriteBatch.DrawString(scoreFont, scoreText, new Vector2(120, 55), Color.Gold, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
             spriteBatch.DrawString(scoreFont, MineText, new Vector2(700, 330), Color.Gold, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
-             
+            spriteBatch.DrawString(scoreFont, BankText, new Vector2(300, 10), Color.Gold, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
             spriteBatch.End(); 
 
             base.Draw(gameTime);

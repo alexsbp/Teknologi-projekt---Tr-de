@@ -41,7 +41,6 @@ namespace Træpisseren
         private float scale;
         private Color color;
         private float rotation;
-        private Thread Thread1; 
 
         public Resurser(Vector2 position, string sprite, SpriteEffects effect, float layer, Vector2 origin, float scale, Color color, float rotation,MyType type)
         {
@@ -114,7 +113,7 @@ namespace Træpisseren
 
         public void WalkMine()
         {
-            Thread.Sleep(10);
+            Thread.Sleep(1000);
             if (position.X <= 300 && position.Y >= 100)
             {
                 position.X += 3;

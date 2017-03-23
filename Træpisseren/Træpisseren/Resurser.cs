@@ -130,7 +130,7 @@ namespace Træpisseren
             }
             if (position.X > 710)
             {
-                lock (thisLock)
+                lock (mineLock)
                 {
                     position.X = 750;
                     position.Y = 350; 

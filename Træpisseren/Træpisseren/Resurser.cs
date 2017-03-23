@@ -18,6 +18,7 @@ namespace Træpisseren
     }
     class Resurser
     {
+        static Object mineLock = new Object();
         private int positionPoint = 0;
         private int bankPoint = 0;
         private int deathPoint = 0;
@@ -129,11 +130,12 @@ namespace Træpisseren
             }
             if (position.X > 710)
             {
-                lock (this)
+                lock(mineLock)
                 {
-                    this.layer = 0.5F;
+                    this.layer = 0;
                     Thread.Sleep(1000);
                 }
+                this.layer = 0.5F;
                 GameWorld.MineScore -= 1;
                 if (GameWorld.MineScore == 0)
                 {

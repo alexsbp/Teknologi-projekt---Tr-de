@@ -226,6 +226,7 @@ namespace Træpisseren
             }
             if (position.X >= 720 && position.Y >= 50)
             {
+               
                 running = false;
             }
         }

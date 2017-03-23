@@ -15,6 +15,8 @@ namespace Træpisseren
     /// </summary>
     public class GameWorld : Game
     {
+        Resurser RS;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Resurser MINE;
@@ -49,6 +51,8 @@ namespace Træpisseren
         }
 
         public float deltaTime { get; private set; }
+
+
 
         public static bool SpawnWorker;
         public static bool EzMoneyz;
@@ -196,7 +200,7 @@ namespace Træpisseren
             foreach (Resurser WORK in ListWORK)
             {
                 WORK.Draw(spriteBatch);
-            }            
+            }
             
             foreach (Resurser Wood in ListWOOD)
             {

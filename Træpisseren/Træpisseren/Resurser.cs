@@ -11,18 +11,18 @@ using System.Threading;
 
 namespace Træpisseren
 {
-    enum MyType
+    public enum MyType
     {
         Miner,
         NotMiner
     }
-    class Resurser
+    public class Resurser
     {
         static Object mineLock = new Object();
         static Semaphore bankSema = new Semaphore(5, 5);
         private int positionPoint = 0;
         private int bankPoint = 0;
-        private int deathPoint = 0;
+        private int deathPoint = 3;
         public bool running = true;
         Thread t1;
         MyType type;
@@ -56,10 +56,10 @@ namespace Træpisseren
             this.rotation = rotation;
             this.type = type;
             if(type == MyType.Miner)
-            { 
-            this.t1 = new Thread(ThreadWorker);
-            this.t1.IsBackground = true;
-            this.t1.Start();
+            {
+                this.t1 = new Thread(ThreadWorker);
+                this.t1.IsBackground = true;
+                this.t1.Start();
             }
         }
 
@@ -110,7 +110,18 @@ namespace Træpisseren
             while (running)
             {
                 Update();
-            }             
+            }
+            this.t1.Abort();
+            foreach (var go in GameWorld.Instance.ListWORK)
+            {
+                if (go.Equals(this))
+                {
+                    GameWorld.Instance.objectsToRemove.Add(this);
+                }
+                GameWorld.Instance.ListWORK.Remove(this);
+            }
+            GameWorld.Instance.objectsToRemove.Clear();
+            //GameWorld.Instance.ListWORK.Remove(this);
         }
 
         public void WalkMine()

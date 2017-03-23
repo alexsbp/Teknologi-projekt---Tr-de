@@ -32,7 +32,9 @@ namespace Træpisseren
 
         List<Resurser> ListWOOD;
         List<Resurser> ListBASE;
-        List<Resurser> ListWORK;
+        public List<Resurser> ListWORK = new List<Resurser>();
+        public List<Resurser> objectsToRemove = new List<Resurser>();
+
         private static GameWorld instance;
         public static GameWorld Instance
         {
@@ -138,7 +140,6 @@ namespace Træpisseren
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
 
             KeyboardState keyState = Keyboard.GetState();
             if (keyState.IsKeyDown(Keys.Space) && SpawnWorker && score > 0)

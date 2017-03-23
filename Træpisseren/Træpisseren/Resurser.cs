@@ -22,7 +22,7 @@ namespace Træpisseren
         static Semaphore bankSema = new Semaphore(5, 5);
         private int positionPoint = 0;
         private int bankPoint = 0;
-        private int deathPoint = 3;
+        private int deathPoint = 0;
         public bool running = true;
         Thread t1;
         MyType type;
@@ -106,7 +106,7 @@ namespace Træpisseren
 
         public void ThreadWorker(object obj)
         {
-            GameWorld.score -= 1;
+            GameWorld.score -= 5;
             while (running)
             {
                 Update();
@@ -227,7 +227,7 @@ namespace Træpisseren
             }
             if (position.X >= 720 && position.Y >= 50)
             {
-               
+                scale = 0.1F; 
                 running = false;
             }
         }

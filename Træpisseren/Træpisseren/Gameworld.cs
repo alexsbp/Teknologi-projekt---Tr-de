@@ -15,7 +15,6 @@ namespace Træpisseren
     /// </summary>
     public class GameWorld : Game
     {
-        Resurser RS;
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -27,15 +26,17 @@ namespace Træpisseren
         SpriteFont scoreFont;
         private string scoreText;
         private string MineText;
-        private string BankText; 
-        public static int score = 1;
+        private string BankText;
+        private string PlayText;
+        public static int score = 5;
         public static int MineScore = 100;
-        public static int BankScore; 
+        public static int BankScore;
+
 
         List<Resurser> ListWOOD;
-        List<Resurser> ListBASE;
-        public List<Resurser> ListWORK = new List<Resurser>();
-        public List<Resurser> objectsToRemove = new List<Resurser>();
+        public List<Resurser> ListBASE;
+        public List<Resurser> ListWORK;
+        public List<Resurser> objectsToRemove;
 
         private static GameWorld instance;
         public static GameWorld Instance
@@ -88,6 +89,7 @@ namespace Træpisseren
             ListWOOD.Add(new Resurser(new Vector2(600, 20), "treeB", SpriteEffects.None, 0.2F, Vector2.Zero, 0.3F, Color.White, 0, MyType.NotMiner));
             ListWOOD.Add(new Resurser(new Vector2(520, 60), "treeB", SpriteEffects.None, 0.6F, Vector2.Zero, 0.3F, Color.White, 0, MyType.NotMiner));
 
+            objectsToRemove = new List<Resurser>();
             ListBASE = new List<Resurser>();
             ListWORK = new List<Resurser>();
             ListBASE.Add(new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0, MyType.NotMiner));
@@ -146,7 +148,7 @@ namespace Træpisseren
                 Exit();
 
             KeyboardState keyState = Keyboard.GetState();
-            if (keyState.IsKeyDown(Keys.Space) && SpawnWorker && score > 0)
+            if (keyState.IsKeyDown(Keys.Space) && SpawnWorker && score >= 5)
             {
                 Resurser work = new Resurser(new Vector2(136, 145), "B1", SpriteEffects.None, 0.5F, Vector2.Zero, 1F, Color.White, 0,MyType.Miner);
                 ListWORK.Add(work);
@@ -175,7 +177,8 @@ namespace Træpisseren
 
             scoreText = "Gold: " + " " + score;
             MineText = "Gold Mine: " + " " + MineScore;
-            BankText = "Workers in bank: " + " " + BankScore;  
+            BankText = "Workers in bank: " + " " + BankScore;
+            PlayText = "Press space to spawn new worker (5 Gold)";   
 
             base.Update(gameTime);
         }
@@ -210,7 +213,8 @@ namespace Træpisseren
 
             spriteBatch.DrawString(scoreFont, scoreText, new Vector2(120, 55), Color.Gold, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
             spriteBatch.DrawString(scoreFont, MineText, new Vector2(700, 330), Color.Gold, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
-            spriteBatch.DrawString(scoreFont, BankText, new Vector2(100, 490), Color.LightBlue, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
+            spriteBatch.DrawString(scoreFont, BankText, new Vector2(100, 490), Color.Gold, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
+            spriteBatch.DrawString(scoreFont, PlayText, new Vector2(10, graphics.PreferredBackBufferHeight - 30), Color.LightBlue, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
             spriteBatch.End(); 
 
             base.Draw(gameTime);

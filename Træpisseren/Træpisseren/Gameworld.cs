@@ -13,14 +13,14 @@ namespace Træpisseren
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Gameworld : Game
+    public class GameWorld : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Resurser MINE;
         Resurser BackG;
         Resurser BANK;
-        public Thread t1; 
+        public Thread t;
 
         SpriteFont scoreFont;
         private string scoreText;
@@ -31,14 +31,14 @@ namespace Træpisseren
         List<Resurser> ListWOOD;
         List<Resurser> ListBASE;
         List<Resurser> ListWORK;
-        private static Gameworld instance;
-        public static Gameworld Instance
+        private static GameWorld instance;
+        public static GameWorld Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new Gameworld();
+                    instance = new GameWorld();
                 }
                 return instance;
             }
@@ -47,8 +47,9 @@ namespace Træpisseren
         public float deltaTime { get; private set; }
 
         public static bool SpawnWorker;
+        public static bool EzMoneyz;
 
-        public Gameworld()
+        public GameWorld()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -63,8 +64,7 @@ namespace Træpisseren
         /// and initialize them as well.
         /// </summary>
         protected override void Initialize()
-        { 
-
+        {
             /*BASE = new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.FlipVertically, 1, Vector2.Zero, 1F, Color.White, 0);
             Thread t = new Thread(BASE.ThreadTest);
             t.Start();*/
@@ -73,15 +73,12 @@ namespace Træpisseren
             BackG = new Resurser(new Vector2(-100, 100), "BackG", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
             BANK = new Resurser(new Vector2(100, 350), "bankA", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0);
 
-
             ListWOOD = new List<Resurser>();
             //ListWOOD.Add(new Resurser(new Vector2(650, 50), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
             ListWOOD.Add(new Resurser(new Vector2(620, 90), "treeB", SpriteEffects.None, 0.1F, Vector2.Zero, 0.3F, Color.White, 0));
             ListWOOD.Add(new Resurser(new Vector2(700, 45), "treeB", SpriteEffects.None, 0.3F, Vector2.Zero, 0.3F, Color.White, 0));
             ListWOOD.Add(new Resurser(new Vector2(600, 20), "treeB", SpriteEffects.None, 0.2F, Vector2.Zero, 0.3F, Color.White, 0));
             ListWOOD.Add(new Resurser(new Vector2(520, 60), "treeB", SpriteEffects.None, 0.4F, Vector2.Zero, 0.3F, Color.White, 0));
-
-            
 
             ListBASE = new List<Resurser>();
             ListWORK = new List<Resurser>();
@@ -98,7 +95,7 @@ namespace Træpisseren
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-             
+            
             foreach (Resurser WOOD in ListWOOD)
             {
                 WOOD.LoadContent(Content); 
@@ -118,7 +115,7 @@ namespace Træpisseren
             BackG.LoadContent(Content);
             BANK.LoadContent(Content);
 
-            scoreFont = Content.Load<SpriteFont>("ScoreFont");
+            scoreFont = Content.Load<SpriteFont>("ScoreFont"); 
         }
 
         /// <summary>
@@ -144,20 +141,35 @@ namespace Træpisseren
             KeyboardState keyState = Keyboard.GetState();
             if (keyState.IsKeyDown(Keys.Space) && SpawnWorker && score > 0)
             {
-
-                Resurser work = new Resurser(new Vector2(136, 145), "B1", SpriteEffects.None, 1, Vector2.Zero, 1F, Color.White, 0);
-                t1 = new Thread(work.ThreadWorker);
-                t1.IsBackground = true; 
-                t1.Start();
+                Resurser work = new Resurser(new Vector2(136, 145), "B1", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0);
+                Thread t = new Thread(new ParameterizedThreadStart(work.ThreadWorker));
+                t.Start();
                 ListWORK.Add(work);
                 work.LoadContent(Content);
-                //work.Update();
-                //SpawnWorker = false;
-            }
-            
+                SpawnWorker = false;
+
+                /*if (work.running == false)
+                {
+                    t.Interrupt();
+                    if (!t.Join(2000))
+                    {
+                        t.Abort();
+                    }
+                }*/               
+            }            
             if (keyState.IsKeyUp(Keys.Space) && SpawnWorker == false)
             {
                 SpawnWorker = true;
+            }
+
+            if (keyState.IsKeyDown(Keys.P) && EzMoneyz) //CHEATS!
+            {
+                score += 50;
+                EzMoneyz = false;
+            }
+            if (keyState.IsKeyUp(Keys.P) && EzMoneyz == false)
+            {
+                EzMoneyz = true;
             }
 
             /*if (score >= 2)

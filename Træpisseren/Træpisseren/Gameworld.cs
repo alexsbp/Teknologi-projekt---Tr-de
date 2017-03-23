@@ -91,7 +91,6 @@ namespace Træpisseren
 
             objectsToRemove = new List<Resurser>();
             ListBASE = new List<Resurser>();
-            ListWORK = new List<Resurser>();
             ListBASE.Add(new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0, MyType.NotMiner));
             ListWORK.Add(new Resurser(new Vector2(136, 145), "B1", SpriteEffects.None, 0.5F, Vector2.Zero, 1F, Color.White, 0, MyType.Miner));
             base.Initialize();

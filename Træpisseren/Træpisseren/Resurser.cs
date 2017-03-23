@@ -112,16 +112,15 @@ namespace Træpisseren
                 Update();
             }
             this.t1.Abort();
-            foreach (var go in GameWorld.Instance.ListWORK)
-            {
-                if (go.Equals(this))
-                {
-                    GameWorld.Instance.objectsToRemove.Add(this);
-                }
-                GameWorld.Instance.ListWORK.Remove(this);
-            }
-            GameWorld.Instance.objectsToRemove.Clear();
-            //GameWorld.Instance.ListWORK.Remove(this);
+            //foreach (var go in GameWorld.Instance.ListWORK)
+            //{
+            //    if (go.Equals(this))
+            //    {
+            //        GameWorld.Instance.objectsToRemove.Add(this);
+            //    }
+            //    GameWorld.Instance.ListWORK.Remove(this);
+            //}
+            //GameWorld.Instance.objectsToRemove.Clear();
         }
 
         public void WalkMine()

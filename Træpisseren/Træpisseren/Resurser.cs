@@ -42,7 +42,7 @@ namespace Træpisseren
         private Color color;
         private float rotation;
 
-        public Resurser(Vector2 position, string sprite, SpriteEffects effect, float layer, Vector2 origin, float scale, Color color, float rotation,MyType type)
+        public Resurser(Vector2 position, string sprite, SpriteEffects effect, float layer, Vector2 origin, float scale, Color color, float rotation, MyType type)
         {
             this.position = position;
             this.spritestring = sprite;
@@ -131,7 +131,8 @@ namespace Træpisseren
             {
                 lock (this)
                 {
-                    this.layer = 0; 
+                    this.layer = 0.5F;
+                    Thread.Sleep(1000);
                 }
                 GameWorld.MineScore -= 1;
                 if (GameWorld.MineScore == 0)

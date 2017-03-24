@@ -58,18 +58,6 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Animation.cs" />
-    <Compile Include="ComponentsPattern\Base.cs" />
-    <Compile Include="ComponentsPattern\Components\Animator.cs" />
-    <Compile Include="ComponentsPattern\Components\Component.cs" />
-    <Compile Include="ComponentsPattern\Components\SpriteRenderer.cs" />
-    <Compile Include="ComponentsPattern\Components\Transform.cs" />
-    <Compile Include="ComponentsPattern\GameObject.cs" />
-    <Compile Include="ComponentsPattern\Interfaces\IAnimateable.cs" />
-    <Compile Include="ComponentsPattern\Interfaces\IDrawable.cs" />
-    <Compile Include="ComponentsPattern\Interfaces\ILoadable.cs" />
-    <Compile Include="ComponentsPattern\Interfaces\IUpdateable.cs" />
-    <Compile Include="ComponentsPattern\Worker.cs" />
     <Compile Include="GameWorld.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

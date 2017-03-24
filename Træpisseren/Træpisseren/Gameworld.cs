@@ -73,16 +73,11 @@ namespace Træpisseren
         /// </summary>
         protected override void Initialize()
         {
-            /*BASE = new Resurser(new Vector2(100, 75), "baseC", SpriteEffects.FlipVertically, 1, Vector2.Zero, 1F, Color.White, 0);
-            Thread t = new Thread(BASE.ThreadTest);
-            t.Start();*/
-
             MINE = new Resurser(new Vector2(700, 350), "mineC", SpriteEffects.None, 1, Vector2.Zero, 1.2F, Color.White, 0,MyType.NotMiner);
             BackG = new Resurser(new Vector2(-100, 100), "BackG", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0,MyType.NotMiner);
             BANK = new Resurser(new Vector2(100, 350), "bankA", SpriteEffects.None, 0.7F, Vector2.Zero, 1F, Color.White, 0, MyType.NotMiner);
 
             ListWOOD = new List<Resurser>();
-            //ListWOOD.Add(new Resurser(new Vector2(650, 50), "treeB", SpriteEffects.None, 1, Vector2.Zero, 0.3F, Color.White, 0));
             ListWOOD.Add(new Resurser(new Vector2(620, 90), "treeB", SpriteEffects.None, 0.8F, Vector2.Zero, 0.3F, Color.White, 0, MyType.NotMiner));
             ListWOOD.Add(new Resurser(new Vector2(700, 45), "treeB", SpriteEffects.None, 0.7F, Vector2.Zero, 0.3F, Color.White, 0, MyType.NotMiner));
             ListWOOD.Add(new Resurser(new Vector2(600, 20), "treeB", SpriteEffects.None, 0.2F, Vector2.Zero, 0.3F, Color.White, 0, MyType.NotMiner));
@@ -166,11 +161,6 @@ namespace Træpisseren
             {
                 EzMoneyz = true;
             }
-
-            //foreach (Resurser WORK in ListWORK)
-            //{
-            //    WORK.Update();
-            //}
 
             scoreText = "Gold: " + " " + score;
             MineText = "Gold Mine: " + " " + MineScore;

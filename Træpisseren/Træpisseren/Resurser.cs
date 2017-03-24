@@ -111,16 +111,7 @@ namespace Træpisseren
             {
                 Update();
             }
-            this.t1.Abort();
-            //foreach (var go in GameWorld.Instance.ListWORK)
-            //{
-            //    if (go.Equals(this))
-            //    {
-            //        GameWorld.Instance.objectsToRemove.Add(this);
-            //    }
-            //    GameWorld.Instance.ListWORK.Remove(this);
-            //}
-            //GameWorld.Instance.objectsToRemove.Clear();
+            this.t1.Abort(); //Kills the thread (worker)
         }
 
         public void WalkMine()

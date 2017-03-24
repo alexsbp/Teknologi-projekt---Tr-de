@@ -19,7 +19,7 @@ namespace Træpisseren
     public class Resurser
     {
         static Object mineLock = new Object();
-        static Semaphore bankSema = new Semaphore(5, 5);
+        static Semaphore bankSema = new Semaphore(5, 10); //First number is the amount of threads that are able to join, second number is the amount of threads that can ask to join
         private int positionPoint = 0;
         private int bankPoint = 0;
         private int deathPoint = 0;
@@ -178,6 +178,17 @@ namespace Træpisseren
             }
             if (position.X < 140)
             {
+                Monitor.Enter(mineLock);
+                try
+                {
+                    this.layer = 0F;
+                    Thread.Sleep(1000);
+                }
+                finally
+                {
+                    Monitor.Exit(mineLock);
+                    this.layer = 0.5F;
+                }
                 positionPoint += 1;
             }
         }

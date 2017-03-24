@@ -142,8 +142,8 @@ namespace Træpisseren
                 }
                 this.layer = 0.6F;
                 this.scale = 1; 
-                GameWorld.MineScore -= 1;
-                if (GameWorld.MineScore == 0)
+                GameWorld.mineScore -= 1;
+                if (GameWorld.mineScore == 0)
                 {
                     //Insert here
                 }
@@ -196,11 +196,11 @@ namespace Træpisseren
                 bankSema.WaitOne();
                 position.X = 136;
                 position.Y = 433;
-                GameWorld.BankScore += 1; 
+                GameWorld.bankScore += 1; 
                 this.layer = 0.8F;
                 Thread.Sleep(5500);
                 bankSema.Release();
-                GameWorld.BankScore -= 1;
+                GameWorld.bankScore -= 1;
                 this.layer = 0.5F;
                 bankPoint -= 1;
             }

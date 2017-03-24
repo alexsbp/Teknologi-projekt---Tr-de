@@ -17,20 +17,18 @@ namespace Træpisseren
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Resurser MINE;
-        Resurser BackG;
-        Resurser BANK;
-        public Thread t1;
+        Resurser mINE;
+        Resurser backG;
+        Resurser bANK;
 
         SpriteFont scoreFont;
         private string scoreText;
-        private string MineText;
-        private string BankText;
-        private string PlayText;
+        private string mineText;
+        private string bankText;
+        private string playText;
         public static int score = 5;
-        public static int MineScore = 100;
-        public static int BankScore;
-
+        public static int mineScore = 1000;
+        public static int bankScore;
 
         List<Resurser> ListWOOD;
         List<Resurser> ListBASE;
@@ -73,9 +71,9 @@ namespace Træpisseren
         /// </summary>
         protected override void Initialize()
         {
-            MINE = new Resurser(new Vector2(700, 350), "mineC", SpriteEffects.None, 1, Vector2.Zero, 1.2F, Color.White, 0,MyType.NotMiner);
-            BackG = new Resurser(new Vector2(-100, 100), "BackG", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0,MyType.NotMiner);
-            BANK = new Resurser(new Vector2(100, 350), "bankA", SpriteEffects.None, 0.7F, Vector2.Zero, 1F, Color.White, 0, MyType.NotMiner);
+            mINE = new Resurser(new Vector2(700, 350), "mineC", SpriteEffects.None, 1, Vector2.Zero, 1.2F, Color.White, 0,MyType.NotMiner);
+            backG = new Resurser(new Vector2(-100, 100), "BackG", SpriteEffects.None, 0, Vector2.Zero, 1F, Color.White, 0,MyType.NotMiner);
+            bANK = new Resurser(new Vector2(100, 350), "bankA", SpriteEffects.None, 0.7F, Vector2.Zero, 1F, Color.White, 0, MyType.NotMiner);
 
             ListWOOD = new List<Resurser>();
             ListWOOD.Add(new Resurser(new Vector2(620, 90), "treeB", SpriteEffects.None, 0.8F, Vector2.Zero, 0.3F, Color.White, 0, MyType.NotMiner));
@@ -113,9 +111,9 @@ namespace Træpisseren
                 WORK.LoadContent(Content);
             }
 
-            MINE.LoadContent(Content);
-            BackG.LoadContent(Content);
-            BANK.LoadContent(Content);
+            mINE.LoadContent(Content);
+            backG.LoadContent(Content);
+            bANK.LoadContent(Content);
 
             scoreFont = Content.Load<SpriteFont>("ScoreFont"); 
         }
@@ -163,9 +161,9 @@ namespace Træpisseren
             }
 
             scoreText = "Gold: " + " " + score;
-            MineText = "Gold Mine: " + " " + MineScore;
-            BankText = "Workers in bank: " + " " + BankScore;
-            PlayText = "Press space to spawn new worker (5 Gold)";   
+            mineText = "Gold Mine: " + " " + mineScore;
+            bankText = "Workers in bank: " + " " + bankScore;
+            playText = "Press space to spawn new worker (5 Gold)";   
 
             base.Update(gameTime);
         }
@@ -184,9 +182,9 @@ namespace Træpisseren
                 BASE.Draw(spriteBatch);
             }
 
-            MINE.Draw(spriteBatch);
-            BackG.Draw(spriteBatch);
-            BANK.Draw(spriteBatch);
+            mINE.Draw(spriteBatch);
+            backG.Draw(spriteBatch);
+            bANK.Draw(spriteBatch);
             
             foreach (Resurser WORK in ListWORK)
             {
@@ -199,9 +197,9 @@ namespace Træpisseren
             }
 
             spriteBatch.DrawString(scoreFont, scoreText, new Vector2(120, 55), Color.Gold, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
-            spriteBatch.DrawString(scoreFont, MineText, new Vector2(700, 330), Color.Gold, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
-            spriteBatch.DrawString(scoreFont, BankText, new Vector2(100, 490), Color.Gold, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
-            spriteBatch.DrawString(scoreFont, PlayText, new Vector2(10, graphics.PreferredBackBufferHeight - 30), Color.LightBlue, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
+            spriteBatch.DrawString(scoreFont, mineText, new Vector2(700, 330), Color.Gold, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
+            spriteBatch.DrawString(scoreFont, bankText, new Vector2(100, 490), Color.Gold, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
+            spriteBatch.DrawString(scoreFont, playText, new Vector2(10, graphics.PreferredBackBufferHeight - 30), Color.LightBlue, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1);
             spriteBatch.End(); 
 
             base.Draw(gameTime);

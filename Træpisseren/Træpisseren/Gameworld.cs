@@ -35,7 +35,7 @@ namespace Træpisseren
 
         List<Resurser> ListWOOD;
         public List<Resurser> ListBASE;
-        public List<Resurser> ListWORK;
+        public List<Resurser> ListWORK = new List<Resurser>();
         public List<Resurser> objectsToRemove;
 
         private static GameWorld instance;

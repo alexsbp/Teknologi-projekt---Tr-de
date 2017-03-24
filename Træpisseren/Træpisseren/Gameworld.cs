@@ -50,10 +50,8 @@ namespace Træpisseren
 
         public float deltaTime { get; private set; }
 
-
-
-        public static bool SpawnWorker;
-        public static bool EzMoneyz;
+        public static bool spawnWorker;
+        public static bool ezMoneyz;
 
         public GameWorld()
         {
@@ -138,26 +136,26 @@ namespace Træpisseren
                 Exit();
 
             KeyboardState keyState = Keyboard.GetState();
-            if (keyState.IsKeyDown(Keys.Space) && SpawnWorker && score >= 5)
+            if (keyState.IsKeyDown(Keys.Space) && spawnWorker && score >= 5)
             {
                 Resurser work = new Resurser(new Vector2(136, 145), "B1", SpriteEffects.None, 0.5F, Vector2.Zero, 1F, Color.White, 0,MyType.Miner);
                 ListWORK.Add(work);
                 work.LoadContent(Content);
-                SpawnWorker = false;
+                spawnWorker = false;
             }            
-            if (keyState.IsKeyUp(Keys.Space) && SpawnWorker == false)
+            if (keyState.IsKeyUp(Keys.Space) && spawnWorker == false)
             {
-                SpawnWorker = true;
+                spawnWorker = true;
             }
 
-            if (keyState.IsKeyDown(Keys.P) && EzMoneyz) //CHEATS!
+            if (keyState.IsKeyDown(Keys.P) && ezMoneyz) //CHEATS!
             {
                 score += 50;
-                EzMoneyz = false;
+                ezMoneyz = false;
             }
-            if (keyState.IsKeyUp(Keys.P) && EzMoneyz == false)
+            if (keyState.IsKeyUp(Keys.P) && ezMoneyz == false)
             {
-                EzMoneyz = true;
+                ezMoneyz = true;
             }
 
             scoreText = "Gold: " + " " + score;
